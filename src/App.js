@@ -3,6 +3,8 @@ import Login from './Pages/Login';
 import { Route, Routes } from 'react-router';
 import { AllRoutes, pageRoutes } from './Routes/pageRoutes';
 import PrivateRoute from './Layout/PrivateRoute';
+import ForgotPassword from './Pages/ForgotPassword';
+import PageNotFound from './Components/PageNotFound';
 
 function App() {
   return (
@@ -20,9 +22,8 @@ function App() {
           })
         }
         <Route exact path={pageRoutes.login} element={<Login />} />
-        {/* <Route exact path={pageRoutes.signup} element={<Signup />} />
-        <Route exact path={pageRoutes.forgot_password} element={<ForgotPassword />} /> */}
-        {/* <Route exact path='*' element={<PageNotFound />} /> */}
+        <Route exact path={pageRoutes.forgot_password} element={<ForgotPassword />} />
+        <Route exact path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
