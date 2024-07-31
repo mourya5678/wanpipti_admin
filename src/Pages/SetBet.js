@@ -6,10 +6,11 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { pageRoutes } from '../Routes/pageRoutes';
 import { Formik } from "formik";
 import { SetBetLimitSchema } from '../Auth/Schema';
+import { useSelector } from 'react-redux';
 
 const SetBet = () => {
     const navigate = useNavigate();
-    const [isToggle, setIsToggle] = useState(false);
+    const { isToggle } = useSelector((state) => state.authReducer);
     const initialState = {
         date: '',
         two_pm: '',
@@ -25,13 +26,13 @@ const SetBet = () => {
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
-            <Sidebar path="set-bet" onClick={() => setIsToggle(!isToggle)} />
+            <Sidebar path="set-bet" />
             <div className="ct_right_content">
-                <Header onClick={() => setIsToggle(!isToggle)} />
-                <div class="ct_inner_dashbaord_main">
-                    <div class="ct_white_bg">
-                        <div class="d-flex align-items-center justify-content-between gap-2 mb-4">
-                            <h4 class="ct_fs_24  ct_fw_600 text-white">Setting Bet</h4>
+                <Header />
+                <div className="ct_inner_dashbaord_main">
+                    <div className="ct_white_bg">
+                        <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
+                            <h4 className="ct_fs_24  ct_fw_600 text-white">Setting Bet</h4>
                         </div>
                         <div className="row">
                             <div className="col-md-6 mx-auto">

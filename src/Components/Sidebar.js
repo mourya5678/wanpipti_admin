@@ -1,13 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router';
 import { pageRoutes } from '../Routes/pageRoutes';
+import { toggleChange } from "../Redux/reducers/authReducer";
+import { useDispatch, useSelector } from 'react-redux';
 
-const Sidebar = ({ onClick, path }) => {
+const Sidebar = ({ path }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isToggle } = useSelector((state) => state.authReducer);
 
     return (
         <div className="ct_side_bar">
-            <div className="ct_close_menu" onClick={onClick}>
+            <div className="ct_close_menu" onClick={() => dispatch(toggleChange(!isToggle))}>
                 <i className="fa-solid fa-xmark"></i>
             </div>
             <div className="ct_logo">

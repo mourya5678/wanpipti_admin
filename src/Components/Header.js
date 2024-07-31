@@ -2,9 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { pipDeleteToken } from '../Auth/Pip';
 import { pageRoutes } from '../Routes/pageRoutes';
+import { toggleChange } from "../Redux/reducers/authReducer";
+import { useDispatch, useSelector } from 'react-redux';
 
-const Header = ({ onClick }) => {
+const Header = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isToggle } = useSelector((state) => state.authReducer);
 
     const onHandleLogoutAdmin = () => {
         pipDeleteToken();
@@ -14,7 +18,7 @@ const Header = ({ onClick }) => {
     return (
         <div className="ct_right_header">
             <div className="ct_right_header_left">
-                <div className="ct_toggle_bar" onClick={onClick}>
+                <div className="ct_toggle_bar" onClick={() => dispatch(toggleChange(!isToggle))}>
                     <i className="fa-solid fa-bars"></i>
                 </div>
             </div>

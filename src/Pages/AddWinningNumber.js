@@ -6,10 +6,11 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { pageRoutes } from '../Routes/pageRoutes';
 import { Formik } from "formik";
 import { AddWinningAmountSchema } from '../Auth/Schema';
+import { useSelector } from 'react-redux';
 
 const AddWinningNumber = () => {
     const navigate = useNavigate();
-    const [isToggle, setIsToggle] = useState(false);
+    const { isToggle } = useSelector((state) => state.authReducer);
     const initialState = {
         date: '',
         two_pm: '',
@@ -24,9 +25,9 @@ const AddWinningNumber = () => {
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
-            <Sidebar onClick={() => setIsToggle(!isToggle)} />
+            <Sidebar />
             <div className="ct_right_content">
-                <Header onClick={() => setIsToggle(!isToggle)} />
+                <Header />
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg p-4">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
@@ -6,13 +7,13 @@ import { pageRoutes } from '../Routes/pageRoutes';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const [isToggle, setIsToggle] = useState(false);
+    const { isToggle } = useSelector((state) => state.authReducer);
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
-            <Sidebar path="dashboard" onClick={() => setIsToggle(!isToggle)} />
+            <Sidebar path="dashboard" />
             <div className="ct_right_content">
-                <Header onClick={() => setIsToggle(!isToggle)} />
+                <Header />
                 <div className="ct_inner_dashbaord_main">
                     <h3 className="ct_fs_35 ct_fw_600 py-4 text-white">Dashboard</h3>
                     <div className="row">

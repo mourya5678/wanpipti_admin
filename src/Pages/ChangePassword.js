@@ -6,10 +6,11 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { Formik } from "formik";
 import { ChangePasswordSchema } from '../Auth/Schema';
 import Eye from '../Components/Eye';
+import { useSelector } from 'react-redux';
 
 const ChangePassword = () => {
     const navigate = useNavigate();
-    const [isToggle, setIsToggle] = useState(false);
+    const { isToggle } = useSelector((state) => state.authReducer);
     const [isEye, setIsEye] = useState(false);
     const [isEye1, setIsEye1] = useState(false);
     const [isEye2, setIsEye2] = useState(false);
@@ -26,9 +27,9 @@ const ChangePassword = () => {
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
-            <Sidebar onClick={() => setIsToggle(!isToggle)} />
+            <Sidebar />
             <div className="ct_right_content">
-                <Header onClick={() => setIsToggle(!isToggle)} />
+                <Header />
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg p-4">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">

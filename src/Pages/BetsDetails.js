@@ -3,17 +3,18 @@ import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import { pipViewDate } from '../Auth/Pip';
+import { useSelector } from 'react-redux';
 
 const BetsDetails = () => {
     const navigate = useNavigate();
-    const [isToggle, setIsToggle] = useState(false);
+    const { isToggle } = useSelector((state) => state.authReducer);
     const [todatDate, setTodayDate] = useState(new Date());
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
-            <Sidebar onClick={() => setIsToggle(!isToggle)} />
+            <Sidebar />
             <div className="ct_right_content">
-                <Header onClick={() => setIsToggle(!isToggle)} />
+                <Header />
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
