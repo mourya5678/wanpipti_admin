@@ -18,9 +18,17 @@ export const pipViewDate = (date) => {
     return moment(date).format("DD-MM-YYYY");
 };
 
+export const pipViewDate2 = (date) => {
+    return moment(date).format("MM-DD-YYYY");
+};
+
 export const pipDeleteToken = () => {
     localStorage.clear();
     message.success("Successfully logged out");
+};
+
+export const pipDeleteTokenAuth = () => {
+    localStorage.clear();
 };
 
 export const pipSuccessMessage = (message) => {

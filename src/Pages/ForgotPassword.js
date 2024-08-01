@@ -4,17 +4,29 @@ import { pageRoutes } from '../Routes/pageRoutes';
 import ErrorMessage from "../Components/ErrorMessage";
 import { Formik } from "formik";
 import { ForgotPasswordSchema } from '../Auth/Schema';
+import { useDispatch, useSelector } from 'react-redux';
+import { adminForgotPassword } from '../Redux/actions/authActions';
+import Loader from '../Components/Loader';
 
 const ForgotPassword = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { isLoading } = useSelector((state) => state?.authReducer);
     const initialState = {
         email: ''
     };
 
     const handleForgotPassword = async (values, { setSubmitting }) => {
         setSubmitting(false);
-    }
+        const callback = (response) => {
+            if (response.success) navigate(pageRoutes?.login);
+        };
+        dispatch(adminForgotPassword({ payload: values, callback }));
+    };
 
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <section className="ct_login_main_bg">
             <div className="ct_login_inner_main">

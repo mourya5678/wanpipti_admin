@@ -1,14 +1,25 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
+import Loader from '../Components/Loader';
 import Sidebar from '../Components/Sidebar';
+import { getAllGames } from '../Redux/actions/usersAction';
 import { pageRoutes } from '../Routes/pageRoutes';
 
 const GamesManagement = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
+    const { isLoading, all_games } = useSelector((state) => state?.usersReducer);
 
+    useEffect(() => {
+        dispatch(getAllGames());
+    }, []);
+
+    if (isLoading) {
+        <Loader />
+    }
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
             <Sidebar path="games" />
@@ -34,136 +45,22 @@ const GamesManagement = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr >
-                                    <tr>
-                                        <td>9</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr >
-                                    <tr>
-                                        <td>10</td>
-                                        <td>26/07/2024</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
-                                                <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr >
+                                    {all_games?.length != 0 &&
+                                        all_games?.map((item, i) => (
+                                            <tr>
+                                                <td>{i + 1}</td>
+                                                <td>26/07/2024</td>
+                                                <td>63</td>
+                                                <td>36</td>
+                                                <td>08</td>
+                                                <td>
+                                                    <div className="ct_action_btns">
+                                                        <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.bet_detail)} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</a>
+                                                        <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody >
                             </table >
                         </div >

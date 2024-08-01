@@ -29,10 +29,11 @@ export const ForgotPasswordSchema = Yup.object().shape({
 
 export const UpdateUserSchema = Yup.object().shape({
     full_name: Yup.string().required("Please enter a full name"),
+    username: Yup.string().required("Please enter a user name")
 });
 
 export const AddWinningAmountSchema = Yup.object().shape({
-    date: Yup.date().required("Please select Date"),
+    created_at: Yup.date().required("Please select Date"),
     two_pm: Yup.number()
         .min(0, "The number must be at least 0")
         .max(99, "The number must be at most 99")

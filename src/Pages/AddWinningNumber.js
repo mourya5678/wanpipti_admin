@@ -5,14 +5,19 @@ import Sidebar from '../Components/Sidebar';
 import ErrorMessage from "../Components/ErrorMessage";
 import { pageRoutes } from '../Routes/pageRoutes';
 import { Formik } from "formik";
+import { pipViewDate2 } from "../Auth/Pip";
 import { AddWinningAmountSchema } from '../Auth/Schema';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addWinningNumber } from '../Redux/actions/usersAction';
+import Loader from '../Components/Loader';
 
 const AddWinningNumber = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
+    const { isLoading } = useSelector((state) => state?.usersReducer);
     const initialState = {
-        date: '',
+        created_at: '',
         two_pm: '',
         five_pm: '',
         nine_pm: ''
@@ -20,9 +25,25 @@ const AddWinningNumber = () => {
 
     const onHandleAddWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
+        const callback = (response) => {
+            if (response?.success) {
+                navigate(-1);
+            }
+        };
+        const data = {
+            created_at: pipViewDate2(values?.created_at),
+            games: [
+                { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm },
+                { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm },
+                { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm }
+            ]
+        }
+        dispatch(addWinningNumber({ payload: data, callback }));
     };
 
-
+    if (isLoading) {
+        <Loader />
+    }
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
             <Sidebar />
@@ -60,18 +81,18 @@ const AddWinningNumber = () => {
                                                         <div className="form-group">
                                                             <label className="mb-2 text-white">Date<span className="ct_required_text">*</span></label>
                                                             <input
-                                                                id="date"
+                                                                id="created_at"
                                                                 type="date"
                                                                 min={new Date()?.toISOString()?.split("T")[0]}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
-                                                                value={values.date}
+                                                                value={values.created_at}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
                                                                 touched={touched}
-                                                                fieldName="date"
+                                                                fieldName="created_at"
                                                             />
                                                         </div>
                                                     </div>
@@ -85,6 +106,7 @@ const AddWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.two_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -103,6 +125,7 @@ const AddWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.five_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -121,6 +144,7 @@ const AddWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.nine_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}

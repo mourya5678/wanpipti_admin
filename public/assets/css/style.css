@@ -65,6 +65,7 @@ ul {
   color: #fff !important;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  color-scheme: dark;
 }
 .ct_input::placeholder {
   color: rgb(255 255 255 / 48%) !important;

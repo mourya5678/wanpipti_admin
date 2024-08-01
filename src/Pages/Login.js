@@ -7,28 +7,36 @@ import Eye from '../Components/Eye';
 import RememberMe from '../Components/RememberMe';
 import { pageRoutes } from '../Routes/pageRoutes';
 import ErrorMessage from "../Components/ErrorMessage";
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../Components/Loader';
+import { adminLogin } from '../Redux/actions/authActions';
 
 const Login = () => {
     const navigate = useNavigate();
     const [isEye, setIsEye] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const { isLoading } = useSelector((state) => state?.authReducer);
+    const dispatch = useDispatch();
     const initialState = {
         email: Cookies.get('admin_user_email') ?? "",
         password: Cookies.get('admin_user_password' ?? ""),
     };
 
-    const setDataInCookies = (values) => {
-        Cookies.set('admin_user_email', values?.email, { expires: 365 });
-        Cookies.set('admin_user_password', values?.password, { expires: 365 });
-    };
-
     const handleLogin = async (values, { setSubmitting }) => {
         setSubmitting(false);
         if (isChecked) {
-            setDataInCookies(values);
+            Cookies.set('admin_user_email', values?.email, { expires: 365 });
+            Cookies.set('admin_user_password', values?.password, { expires: 365 });
         }
+        const callback = (response) => {
+            if (response.success) navigate(pageRoutes?.dashboard);
+        };
+        dispatch(adminLogin({ payload: values, callback }));
     };
 
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <div>
             <section className="ct_login_main_bg">
