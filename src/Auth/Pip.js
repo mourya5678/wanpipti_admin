@@ -6,7 +6,9 @@ export const curSym = "$";
 
 // Authorization
 export const pipSetAccessToken = (token) => {
-    localStorage.setItem("access-token", token);
+    if (!token) return;
+    else
+        localStorage.setItem("access-token", token);
 };
 
 export const pipGetAccessToken = () => {
@@ -40,6 +42,8 @@ export const pipErrorMessage = (message) => {
 };
 
 export const pipSaveProfile = (profile) => {
+    if (!profile)
+        return;
     localStorage.setItem('user_data', JSON.stringify(profile));
 };
 

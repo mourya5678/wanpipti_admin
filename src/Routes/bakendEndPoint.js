@@ -8,3 +8,7 @@ export const deleteUserByIdEndPointURL = "user/delete/";
 export const updateUserDetailsEndPointURL = "user/update/"
 export const createGameEndPointURL = "create-game-by-admin";
 export const getAllGamesEndPointURL = "games/all";
+
+export const myProfileEndPointURL = "profile";
+export const updateMyProfileEndPointURL = "profile/update";
+export const changePasswordEndPointURL = "change-password";

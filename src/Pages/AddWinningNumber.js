@@ -42,7 +42,7 @@ const AddWinningNumber = () => {
     };
 
     if (isLoading) {
-        <Loader />
+        return <Loader />
     }
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>

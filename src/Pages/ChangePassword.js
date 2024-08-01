@@ -6,10 +6,12 @@ import ErrorMessage from "../Components/ErrorMessage";
 import { Formik } from "formik";
 import { ChangePasswordSchema } from '../Auth/Schema';
 import Eye from '../Components/Eye';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeMyPassword } from '../Redux/actions/usersAction';
 
 const ChangePassword = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const [isEye, setIsEye] = useState(false);
     const [isEye1, setIsEye1] = useState(false);
@@ -22,6 +24,13 @@ const ChangePassword = () => {
 
     const onHandleChangePassword = async (values, { setSubmitting }) => {
         setSubmitting(false);
+        const callback = (response) => {
+            if (response?.success) {
+                navigate(-1);
+            }
+        };
+        delete values.confirmPassword;
+        dispatch(changeMyPassword({ payload: values, callback }));
     };
 
 
@@ -129,7 +138,7 @@ const ChangePassword = () => {
                                                     </div>
                                                 </div>
                                                 <div className="d-flex align-items-center gap-3">
-                                                    <a href="javascript:void(0)" className="ct_yellow_btn  w-auto ">Update</a>
+                                                    <button type="submit" onClick={(e) => handleSubmit(e)} className="ct_yellow_btn  w-auto ">Update</button>
                                                 </div>
                                             </div>
                                         </form>

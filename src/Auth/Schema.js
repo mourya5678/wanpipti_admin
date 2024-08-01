@@ -82,5 +82,6 @@ export const ChangePasswordSchema = Yup.object().shape({
 });
 
 export const UpdateAdminSchema = Yup.object().shape({
-    full_name: Yup.string().required("Please enter your password")
+    full_name: Yup.string().required("Please enter your full name"),
+    username: Yup.string().required("Please enter your user name")
 });

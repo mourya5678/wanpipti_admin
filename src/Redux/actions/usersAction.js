@@ -5,7 +5,10 @@ import {
     deleteUserByIdEndPointURL,
     updateUserDetailsEndPointURL,
     createGameEndPointURL,
-    getAllGamesEndPointURL
+    getAllGamesEndPointURL,
+    myProfileEndPointURL,
+    updateMyProfileEndPointURL,
+    changePasswordEndPointURL
 } from "../../Routes/bakendEndPoint";
 
 export const getUsersData = createAsyncThunk("user-data", async () => {
@@ -21,7 +24,7 @@ export const getUsersData = createAsyncThunk("user-data", async () => {
     }
 });
 
-export const editUserDetail = createAsyncThunk("upadate-user", async (props) => {
+export const editUserDetail = createAsyncThunk("update-user", async (props) => {
     const { payload, callback } = props;
     try {
         const response = await API_REQUEST({
@@ -69,7 +72,7 @@ export const addWinningNumber = createAsyncThunk("winnig-number", async (props) 
     }
 });
 
-export const getAllGames = createAsyncThunk("get-games", async (props) => {
+export const getAllGames = createAsyncThunk("get-games", async () => {
     try {
         const response = await API_REQUEST({
             url: getAllGamesEndPointURL,
@@ -79,5 +82,52 @@ export const getAllGames = createAsyncThunk("get-games", async (props) => {
         return response;
     } catch (error) {
         console.log(error);
+    }
+});
+
+export const getMyProfileData = createAsyncThunk("my-profile", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: myProfileEndPointURL,
+            method: "GET",
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+export const updateMyProfileData = createAsyncThunk("update-profile", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: updateMyProfileEndPointURL,
+            method: "POST",
+            data: payload,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'accept': 'application/json',
+            }
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
+    }
+});
+
+export const changeMyPassword = createAsyncThunk("change-password", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: changePasswordEndPointURL,
+            method: "POST",
+            data: payload,
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
     }
 });

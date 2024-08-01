@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { pipDeleteToken } from '../Auth/Pip';
+import { pipDeleteToken, pipGetProfile } from '../Auth/Pip';
 import { pageRoutes } from '../Routes/pageRoutes';
 import { toggleChange } from "../Redux/reducers/authReducer";
 import { useDispatch, useSelector } from 'react-redux';
+import { getMyProfileData } from '../Redux/actions/usersAction';
+import Loader from './Loader';
 
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
+    const { myProfile, isLoading } = useSelector((state) => state.usersReducer)
+    const [userProfile, setUserProfile] = useState(myProfile ?? {});
+
+    useEffect(() => {
+        const userData = pipGetProfile();
+        if (!userData) {
+            dispatch(getMyProfileData());
+        } else {
+            setUserProfile(userData ?? myProfile);
+        }
+    }, []);
 
     const onHandleLogoutAdmin = () => {
         pipDeleteToken();
         navigate(pageRoutes.login);
     };
+
+    if (isLoading) {
+        return <Loader />
+    }
 
     return (
         <div className="ct_right_header">
@@ -25,10 +42,10 @@ const Header = () => {
             <div className="ct_right_header_right">
                 <div className="ct_user_profile_head">
                     <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.profile)}>
-                        <img src="assets/img/user_1.png" className="ct_img_44" />
+                        <img src={userProfile?.profile_image ?? "assets/img/user124.jpg"} className="ct_img_44" />
                         <div>
-                            <h6 className="ct_fs_14 ct_fw_600 mb-0 text-white">John Doe</h6>
-                            <p className="mb-0 ct_fs_12 ct_fw_400 text-white">Admin</p>
+                            <h6 className="ct_fs_14 ct_fw_600 mb-0 text-white">{userProfile?.full_name ?? ""}</h6>
+                            <p className="mb-0 ct_fs_12 ct_fw_400 text-white">{userProfile?.username ?? ""}</p>
                         </div>
                     </a>
                 </div>

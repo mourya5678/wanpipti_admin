@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { pipSaveProfile } from "../../Auth/Pip";
 import {
     getUsersData,
     deleteUser,
     editUserDetail,
-    getAllGames
+    getAllGames,
+    getMyProfileData,
+    addWinningNumber,
+    updateMyProfileData,
+    changeMyPassword
 } from "../actions/usersAction";
 
 const initialState = {
     isLoading: false,
     all_users: [],
     userData: {},
-    all_games: []
+    all_games: [],
+    myProfile: {}
 };
 
 export const userSlice = createSlice({
@@ -22,6 +28,7 @@ export const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        // user-data
         builder.addCase(getUsersData.pending, (state, action) => {
             state.isLoading = true;
         });
@@ -34,6 +41,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
 
+        // delete-user
         builder.addCase(deleteUser.pending, (state, action) => {
             state.isLoading = true;
         });
@@ -44,6 +52,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
 
+        // update-user
         builder.addCase(editUserDetail.pending, (state, action) => {
             state.isLoading = true;
         });
@@ -54,6 +63,18 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
 
+        // winnig-number
+        builder.addCase(addWinningNumber.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(addWinningNumber.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(addWinningNumber.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // get-games
         builder.addCase(getAllGames.pending, (state, action) => {
             state.isLoading = true;
         });
@@ -66,6 +87,42 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
 
+        // my-profile
+        builder.addCase(getMyProfileData.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getMyProfileData.fulfilled, (state, action) => {
+            const { data } = action?.payload || {};
+            console.log(data)
+            state.myProfile = data ?? {}
+            pipSaveProfile(data);
+            state.isLoading = false;
+        });
+        builder.addCase(getMyProfileData.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // update-profile
+        builder.addCase(updateMyProfileData.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(updateMyProfileData.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(updateMyProfileData.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // change-password
+        builder.addCase(changeMyPassword.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(changeMyPassword.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(changeMyPassword.rejected, (state, action) => {
+            state.isLoading = false;
+        });
     },
 });
 
