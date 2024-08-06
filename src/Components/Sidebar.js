@@ -30,7 +30,7 @@ const Sidebar = ({ path }) => {
                 <li onClick={() => navigate(pageRoutes.financial_report)}>
                     <a href="javascript:void(0)" className={path == "financial" && "active"}>Financial Report</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.set_bet_limit)}>
+                <li onClick={() => navigate(pageRoutes.all_bets)}>
                     <a href="javascript:void(0)" className={path == "set-bet" && "active"}>Setting Bets</a>
                 </li>
             </ul>

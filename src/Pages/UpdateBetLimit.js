@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import ErrorMessage from "../Components/ErrorMessage";
@@ -7,18 +7,20 @@ import { pageRoutes } from '../Routes/pageRoutes';
 import { Formik } from "formik";
 import { SetBetLimitSchema } from '../Auth/Schema';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddBetLimitForNumber } from '../Redux/actions/usersAction';
+import { UpdateBetLimitForNumber } from '../Redux/actions/usersAction';
 import Loader from '../Components/Loader';
+import { pipViewDate3 } from '../Auth/Pip';
 
-const SetBet = () => {
+const UpdateBetLimit = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading } = useSelector((state) => state?.usersReducer);
     const initialState = {
-        set_date: '',
-        bet_number: '',
-        max_bet_limit: '',
+        set_date: pipViewDate3(state?.data?.set_date) ?? '',
+        bet_number: state?.data?.bet_number ?? '',
+        max_bet_limit: state?.data?.max_bet_limit ?? '',
     };
 
     const onHandleSetBetLimit = async (values, { setSubmitting }) => {
@@ -28,9 +30,8 @@ const SetBet = () => {
                 navigate(-1);
             }
         };
-        dispatch(AddBetLimitForNumber({ payload: values, callback }));
+        dispatch(UpdateBetLimitForNumber({ payload: values, callback }));
     };
-
 
     if (isLoading) {
         return <Loader />
@@ -70,12 +71,10 @@ const SetBet = () => {
                                                             <label className="mb-2 text-white">Date<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="set_date"
-                                                                type="date"
-                                                                min={new Date()?.toISOString()?.split("T")[0]}
+                                                                type="text"
                                                                 className="ct_input form-control"
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
-                                                                value={values.set_date}
+                                                                value={pipViewDate3(values.set_date)}
+                                                                readOnly
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -91,8 +90,7 @@ const SetBet = () => {
                                                                 id="bet_number"
                                                                 type="number"
                                                                 className="ct_input form-control"
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
+                                                                readOnly
                                                                 value={values.bet_number}
                                                             />
                                                             <ErrorMessage
@@ -137,4 +135,4 @@ const SetBet = () => {
     )
 }
 
-export default SetBet;
+export default UpdateBetLimit;

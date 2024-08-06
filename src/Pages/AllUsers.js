@@ -24,8 +24,7 @@ const AllUsers = () => {
                 dispatch(getUsersData());
             }
         };
-        dispatch(
-            deleteUser({ payload: { user_id: val }, callback })
+        dispatch(deleteUser({ payload: { user_id: val }, callback })
         );
     };
 
@@ -40,7 +39,7 @@ const AllUsers = () => {
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
-                            <h4 className="ct_fs_24  ct_fw_600 text-white">All User</h4>
+                            <h4 className="ct_fs_24  ct_fw_600 text-white">All Users</h4>
                         </div>
                         <div className="table-responsive mt-4">
                             <table className="table ct_custom_table">
@@ -72,7 +71,7 @@ const AllUsers = () => {
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => dispatch(userModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
                                                         <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.edit_user, { state: { data: item } })} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
-                                                        <a href="javascript:void(0)" onClick={() => dispatch(handleDeleteUser(item?.id))} className="ct_delete_btn"><i className="fa-solid fa-trash-can"></i></a>
+                                                        <a href="javascript:void(0)" onClick={() => handleDeleteUser(item?.id)} className="ct_delete_btn"><i className="fa-solid fa-trash-can"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

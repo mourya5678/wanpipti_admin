@@ -16,7 +16,8 @@ const initialState = {
     all_users: [],
     userData: {},
     all_games: [],
-    myProfile: {}
+    myProfile: {},
+    betLimitData: {}
 };
 
 export const userSlice = createSlice({
@@ -25,7 +26,10 @@ export const userSlice = createSlice({
     reducers: {
         userModalData: (state, action) => {
             state.userData = action?.payload;
-        }
+        },
+        betLimitModalData: (state, action) => {
+            state.betLimitData = action?.payload;
+        },
     },
     extraReducers: (builder) => {
         // user-data
@@ -126,5 +130,5 @@ export const userSlice = createSlice({
     },
 });
 
-export const { userModalData } = userSlice.actions;
+export const { userModalData, betLimitModalData } = userSlice.actions;
 export default userSlice.reducer;

@@ -20,6 +20,10 @@ export const pipViewDate = (date) => {
     return moment(date).format("DD-MM-YYYY");
 };
 
+export const pipViewDate3 = (date) => {
+    return moment(date).format("MM/DD/YYYY");
+};
+
 export const pipViewDate2 = (date) => {
     return moment(date).format("MM-DD-YYYY");
 };

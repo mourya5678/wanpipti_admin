@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import { pipViewDate } from '../Auth/Pip';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getGamesById } from '../Redux/actions/usersAction';
+import Loader from '../Components/Loader';
 
 const BetsDetails = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { state } = useNavigate();
     const { isToggle } = useSelector((state) => state.authReducer);
+    const { isLoading, games_bet_details } = useSelector((state) => state?.usersReducer);
     const [todatDate, setTodayDate] = useState(new Date());
 
+    useEffect(() => {
+        dispatch(getGamesById({ payload: state?.data }));
+    }, []);
+    console.log({ state })
+
+    if (isLoading) {
+        return <Loader />
+    }
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
             <Sidebar />
@@ -35,105 +48,6 @@ const BetsDetails = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Doe</td>
-                                        <td>63</td>
-                                        <td>36</td>
-                                        <td>08</td>
-                                        <td>
-                                            <div className="ct_action_btns">
-                                                <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                            </div>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td>John Doe</td>
                                         <td>63</td>

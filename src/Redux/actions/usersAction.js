@@ -8,7 +8,13 @@ import {
     getAllGamesEndPointURL,
     myProfileEndPointURL,
     updateMyProfileEndPointURL,
-    changePasswordEndPointURL
+    changePasswordEndPointURL,
+    getAllWalletTransactionENdPointURL,
+    getAllBetsLimitDataEndPointURL,
+    setBetLimitEndPointURL,
+    updateBetLimitEndPointURL,
+    deleteBetLimitDataEndPointURL,
+    getBetsDatByDatEndpointURL
 } from "../../Routes/bakendEndPoint";
 
 export const getUsersData = createAsyncThunk("user-data", async () => {
@@ -129,5 +135,87 @@ export const changeMyPassword = createAsyncThunk("change-password", async (props
         return response;
     } catch (error) {
         callback(null, error);
+    }
+});
+
+export const AllTrasactionWallet = createAsyncThunk("wallet-transaction", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getAllWalletTransactionENdPointURL,
+            method: "GET",
+        });
+        return response;
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+export const getBetLimitData = createAsyncThunk("bet-limit", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getAllBetsLimitDataEndPointURL,
+            method: "GET",
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
+        console.log(error)
+    }
+});
+export const AddBetLimitForNumber = createAsyncThunk("add-bet-limit", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: setBetLimitEndPointURL,
+            method: "POST",
+            data: payload,
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
+    }
+});
+
+export const UpdateBetLimitForNumber = createAsyncThunk("update-bet-limit", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: updateBetLimitEndPointURL,
+            method: "POST",
+            data: payload,
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
+    }
+});
+
+export const deleteSetBet = createAsyncThunk("delete-bet-limit", async (props) => {
+    const { payload } = props;
+    try {
+        const response = await API_REQUEST({
+            url: deleteBetLimitDataEndPointURL + payload,
+            method: "DELETE",
+        });
+        return response;
+    } catch (error) {
+        return error ?? null
+    }
+});
+
+export const getGamesById = createAsyncThunk("get-game-by-id", async (props) => {
+    const { payload } = props;
+    try {
+        const response = await API_REQUEST({
+            url: getBetsDatByDatEndpointURL,
+            method: "POST",
+            data: payload,
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
+        return error ?? null
     }
 });

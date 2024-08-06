@@ -8,6 +8,12 @@ export const deleteUserByIdEndPointURL = "user/delete/";
 export const updateUserDetailsEndPointURL = "user/update/"
 export const createGameEndPointURL = "create-game-by-admin";
 export const getAllGamesEndPointURL = "games/all";
+export const getAllWalletTransactionENdPointURL = "get-wallet-trasaction/all";
+export const setBetLimitEndPointURL = "create-bet-game-setting";
+export const getAllBetsLimitDataEndPointURL = "game-bet-settings-all";
+export const updateBetLimitEndPointURL = "gamebetsetting-update";
+export const deleteBetLimitDataEndPointURL = "gamebetsetting/delete/";
+export const getBetsDatByDatEndpointURL = "bets-by-date";
 
 export const myProfileEndPointURL = "profile";
 export const updateMyProfileEndPointURL = "profile/update";

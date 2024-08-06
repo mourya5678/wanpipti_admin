@@ -8,7 +8,9 @@ import EditAdminProfile from "../Pages/EditAdminProfile";
 import EditUsers from "../Pages/EditUsers";
 import FinancialReport from "../Pages/FinancialReport";
 import GamesManagement from "../Pages/GamesManagement";
+import GetAllBetsData from "../Pages/GetAllBetsData";
 import SetBet from "../Pages/SetBet";
+import UpdateBetLimit from "../Pages/UpdateBetLimit";
 import UpdateWinningNumber from "../Pages/UpdateWinningNumber";
 
 export const pageRoutes = {
@@ -24,6 +26,8 @@ export const pageRoutes = {
     bet_detail: "/bet-detail",
     financial_report: "/finacial-report",
     set_bet_limit: "/set-bet-limit",
+    all_bets: "/all_bets",
+    update_bets: "/update_bets",
     profile: "/my-profile",
     update_profile: "/edit-profile",
     change_password: "/change-password"
@@ -82,6 +86,18 @@ export const AllRoutes = [
         name: 'SetBetLimit',
         path: pageRoutes.set_bet_limit,
         element: <SetBet />,
+        isPrivate: true
+    },
+    {
+        name: 'GetAllBets',
+        path: pageRoutes.all_bets,
+        element: <GetAllBetsData />,
+        isPrivate: true
+    },
+    {
+        name: 'UpdateBets',
+        path: pageRoutes.update_bets,
+        element: <UpdateBetLimit />,
         isPrivate: true
     },
     {

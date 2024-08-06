@@ -303,7 +303,7 @@ ul {
   z-index: -1;
 }
 .ct_red_text {
-  color: #ff003d;
+  color: #ff003d !important;
 }
 .ct_py_30_px_24 {
   padding: 24px 30px;
