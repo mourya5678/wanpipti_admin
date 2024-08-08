@@ -92,6 +92,7 @@ const UpdateBetLimit = () => {
                                                                 className="ct_input form-control"
                                                                 readOnly
                                                                 value={values.bet_number}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -110,6 +111,7 @@ const UpdateBetLimit = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.max_bet_limit}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}

@@ -94,6 +94,7 @@ const SetBet = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.bet_number}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -112,6 +113,7 @@ const SetBet = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.max_bet_limit}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}

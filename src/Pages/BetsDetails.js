@@ -23,7 +23,6 @@ const BetsDetails = () => {
         dispatch(getGamesById({ payload: data }));
     }, []);
 
-    console.log({ user_bet_details })
 
     if (isLoading) {
         return <Loader />
@@ -52,7 +51,7 @@ const BetsDetails = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                {games_bet_details ? games_bet_details?.length != 0 &&
+                                {games_bet_details && games_bet_details?.length != 0 ?
                                     <tbody>
                                         {games_bet_details?.map((item) => (
                                             <tr>

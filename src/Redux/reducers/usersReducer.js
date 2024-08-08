@@ -13,7 +13,8 @@ import {
     getAllFaq,
     deleteFaq,
     getGamesById,
-    UpdateNewQuiz
+    UpdateNewQuiz,
+    getBetLimitData
 } from "../actions/usersAction";
 
 const initialState = {
@@ -25,7 +26,8 @@ const initialState = {
     betLimitData: {},
     all_faq: [],
     games_bet_details: [],
-    user_bet_details: {}
+    user_bet_details: {},
+    bet_data: []
 };
 
 export const userSlice = createSlice({
@@ -191,10 +193,23 @@ export const userSlice = createSlice({
         });
         builder.addCase(getGamesById.fulfilled, (state, action) => {
             const { data } = action?.payload || [];
-            state.games_bet_details = data ?? []
+            state.games_bet_details = data?.message ? [] : data
             state.isLoading = false;
         });
         builder.addCase(getGamesById.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // getBetLimitData
+        builder.addCase(getBetLimitData.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getBetLimitData.fulfilled, (state, action) => {
+            const { data } = action?.payload || [];
+            state.bet_data = data ?? []
+            state.isLoading = false;
+        });
+        builder.addCase(getBetLimitData.rejected, (state, action) => {
             state.isLoading = false;
         });
     },

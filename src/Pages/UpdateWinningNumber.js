@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import ErrorMessage from "../Components/ErrorMessage";
@@ -11,16 +11,19 @@ import { useSelector } from 'react-redux';
 const UpdateWinningNumber = () => {
     const navigate = useNavigate();
     const { isToggle } = useSelector((state) => state.authReducer);
+    const { state } = useLocation();
     const initialState = {
-        date: '',
-        two_pm: '',
-        five_pm: '',
-        nine_pm: ''
+        date: state?.created_at,
+        two_pm: state?.data?.['2 PM_winning_number'] ?? '',
+        five_pm: state?.data?.['5 PM_winning_number'] ?? '',
+        nine_pm: state?.data?.['9 PM_winning_number'] ?? ''
     };
 
     const onHandleUpdateWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
     };
+
+    console.log({ state });
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
@@ -61,17 +64,11 @@ const UpdateWinningNumber = () => {
                                                             <label className="mb-2 text-white">Date<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="date"
-                                                                type="date"
+                                                                type="text"
                                                                 min={new Date()?.toISOString()?.split("T")[0]}
                                                                 className="ct_input form-control"
-                                                                onChange={handleChange}
-                                                                onBlur={handleBlur}
                                                                 value={values.date}
-                                                            />
-                                                            <ErrorMessage
-                                                                errors={errors}
-                                                                touched={touched}
-                                                                fieldName="date"
+                                                                readOnly
                                                             />
                                                         </div>
                                                     </div>
@@ -85,6 +82,7 @@ const UpdateWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.two_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -103,6 +101,7 @@ const UpdateWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.five_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -121,6 +120,7 @@ const UpdateWinningNumber = () => {
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.nine_pm}
+                                                                onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}

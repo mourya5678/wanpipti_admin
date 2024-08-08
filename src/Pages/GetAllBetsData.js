@@ -26,7 +26,7 @@ const GetAllBetsData = () => {
             console.log(err)
         })
     };
-
+    
     if (isLoading) {
         return <Loader />
     }
