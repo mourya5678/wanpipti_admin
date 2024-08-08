@@ -8,7 +8,12 @@ import {
     getMyProfileData,
     addWinningNumber,
     updateMyProfileData,
-    changeMyPassword
+    changeMyPassword,
+    AddNewQuiz,
+    getAllFaq,
+    deleteFaq,
+    getGamesById,
+    UpdateNewQuiz
 } from "../actions/usersAction";
 
 const initialState = {
@@ -17,7 +22,10 @@ const initialState = {
     userData: {},
     all_games: [],
     myProfile: {},
-    betLimitData: {}
+    betLimitData: {},
+    all_faq: [],
+    games_bet_details: [],
+    user_bet_details: {}
 };
 
 export const userSlice = createSlice({
@@ -29,6 +37,9 @@ export const userSlice = createSlice({
         },
         betLimitModalData: (state, action) => {
             state.betLimitData = action?.payload;
+        },
+        viewUserBetDetails: (state, action) => {
+            state.user_bet_details = action?.payload;
         },
     },
     extraReducers: (builder) => {
@@ -127,8 +138,67 @@ export const userSlice = createSlice({
         builder.addCase(changeMyPassword.rejected, (state, action) => {
             state.isLoading = false;
         });
+
+        // AddNewQuiz
+        builder.addCase(AddNewQuiz.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(AddNewQuiz.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(AddNewQuiz.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // getAllFaq
+        builder.addCase(getAllFaq.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getAllFaq.fulfilled, (state, action) => {
+            const { data } = action?.payload || [];
+            state.all_faq = data ?? []
+            state.isLoading = false;
+        });
+        builder.addCase(getAllFaq.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // deleteFaq
+        builder.addCase(deleteFaq.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(deleteFaq.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(deleteFaq.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // UpdateNewQuiz
+        builder.addCase(UpdateNewQuiz.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(UpdateNewQuiz.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(UpdateNewQuiz.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // getGamesById
+        builder.addCase(getGamesById.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getGamesById.fulfilled, (state, action) => {
+            const { data } = action?.payload || [];
+            state.games_bet_details = data ?? []
+            state.isLoading = false;
+        });
+        builder.addCase(getGamesById.rejected, (state, action) => {
+            state.isLoading = false;
+        });
     },
 });
 
-export const { userModalData, betLimitModalData } = userSlice.actions;
+export const { userModalData, betLimitModalData, viewUserBetDetails } = userSlice.actions;
 export default userSlice.reducer;

@@ -18,3 +18,7 @@ export const getBetsDatByDatEndpointURL = "bets-by-date";
 export const myProfileEndPointURL = "profile";
 export const updateMyProfileEndPointURL = "profile/update";
 export const changePasswordEndPointURL = "change-password";
+export const addNewFaqEndPointURL = "create-faq";
+export const getAllFaqEndPointURL = "get-faq/all";
+export const deleteFaqEndPointURl = "delete-faq/"
+export const updateFaqEndPointURL = "update-faq/";

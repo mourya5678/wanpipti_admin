@@ -14,7 +14,11 @@ import {
     setBetLimitEndPointURL,
     updateBetLimitEndPointURL,
     deleteBetLimitDataEndPointURL,
-    getBetsDatByDatEndpointURL
+    getBetsDatByDatEndpointURL,
+    addNewFaqEndPointURL,
+    getAllFaqEndPointURL,
+    deleteFaqEndPointURl,
+    updateFaqEndPointURL
 } from "../../Routes/bakendEndPoint";
 
 export const getUsersData = createAsyncThunk("user-data", async () => {
@@ -216,6 +220,67 @@ export const getGamesById = createAsyncThunk("get-game-by-id", async (props) => 
         });
         return response;
     } catch (error) {
+        return error ?? null
+    }
+});
+
+export const AddNewQuiz = createAsyncThunk("add_new_quiz", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: addNewFaqEndPointURL,
+            method: "POST",
+            data: payload,
+            isErrorToast: false
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(error ?? null);
+        return error ?? null
+    }
+});
+
+export const getAllFaq = createAsyncThunk("get-faq", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getAllFaqEndPointURL,
+            method: "GET",
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
+        return error ?? null
+    }
+});
+
+export const deleteFaq = createAsyncThunk("delete-faq", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: deleteFaqEndPointURl + payload?.user_id,
+            method: "DELETE",
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
+    }
+});
+
+export const UpdateNewQuiz = createAsyncThunk("update_new_quiz", async (props) => {
+    const { payload, callback, id } = props;
+    try {
+        const response = await API_REQUEST({
+            url: updateFaqEndPointURL + id,
+            method: "UPDATE",
+            data: payload,
+            isErrorToast: false
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(error ?? null);
         return error ?? null
     }
 });

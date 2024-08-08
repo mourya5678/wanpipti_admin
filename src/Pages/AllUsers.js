@@ -24,8 +24,7 @@ const AllUsers = () => {
                 dispatch(getUsersData());
             }
         };
-        dispatch(deleteUser({ payload: { user_id: val }, callback })
-        );
+        dispatch(deleteUser({ payload: { user_id: val }, callback }));
     };
 
     if (isLoading) {

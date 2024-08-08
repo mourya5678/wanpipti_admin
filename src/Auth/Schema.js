@@ -83,3 +83,8 @@ export const UpdateAdminSchema = Yup.object().shape({
     full_name: Yup.string().required("Please enter your full name"),
     username: Yup.string().required("Please enter your user name")
 });
+
+export const AddFaqSchema = Yup.object().shape({
+    question: Yup.string().required("Please enter question"),
+    answer: Yup.string().required("Please enter answer")
+});

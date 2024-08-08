@@ -1,10 +1,13 @@
+import AddFaq from "../Pages/AddFaq";
 import AddWinningNumber from "../Pages/AddWinningNumber";
 import AdminProfile from "../Pages/AdminProfile";
+import AllFaq from "../Pages/AllFaq";
 import AllUsers from "../Pages/AllUsers";
 import BetsDetails from "../Pages/BetsDetails";
 import ChangePassword from "../Pages/ChangePassword";
 import Dashboard from "../Pages/Dashboard";
 import EditAdminProfile from "../Pages/EditAdminProfile";
+import EditFaq from "../Pages/EditFaq";
 import EditUsers from "../Pages/EditUsers";
 import FinancialReport from "../Pages/FinancialReport";
 import GamesManagement from "../Pages/GamesManagement";
@@ -30,7 +33,10 @@ export const pageRoutes = {
     update_bets: "/update_bets",
     profile: "/my-profile",
     update_profile: "/edit-profile",
-    change_password: "/change-password"
+    change_password: "/change-password",
+    add_faq: "/add-faq",
+    all_faq: "/faq",
+    edit_faq: '/edit-faq'
 };
 
 export const AllRoutes = [
@@ -116,6 +122,24 @@ export const AllRoutes = [
         name: 'ChangePassword',
         path: pageRoutes.change_password,
         element: <ChangePassword />,
+        isPrivate: true
+    },
+    {
+        name: 'AddFaq',
+        path: pageRoutes.add_faq,
+        element: <AddFaq />,
+        isPrivate: true
+    },
+    {
+        name: 'AllFaq',
+        path: pageRoutes.all_faq,
+        element: <AllFaq />,
+        isPrivate: true
+    },
+    {
+        name: 'EditFaq',
+        path: pageRoutes.edit_faq,
+        element: <EditFaq />,
         isPrivate: true
     }
 ];

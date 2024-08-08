@@ -6,7 +6,7 @@ import Loader from '../Components/Loader';
 import Sidebar from '../Components/Sidebar';
 import { getAllGames } from '../Redux/actions/usersAction';
 import { pageRoutes } from '../Routes/pageRoutes';
-import { pipViewDate2 } from '../Auth/Pip';
+import { pipViewDate2, pipViewDate3 } from '../Auth/Pip';
 
 const GamesManagement = () => {
     const navigate = useNavigate();
@@ -50,13 +50,13 @@ const GamesManagement = () => {
                                         all_games?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
-                                                <td>{pipViewDate2(item?.created_at) ?? 'NA'}</td>
+                                                <td>{pipViewDate3(item?.created_at) ?? 'NA'}</td>
                                                 <td>{item?.["2 PM_winning_number"] ?? 'NA'}</td>
                                                 <td>{item?.["5 PM_winning_number"] ?? 'NA'}</td>
                                                 <td>{item?.["9 PM_winning_number"] ?? 'NA'}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
-                                                        <button onClick={() => navigate(pageRoutes.bet_detail, { state: item })} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</button>
+                                                        <button onClick={() => navigate(pageRoutes.bet_detail, { state: { created_at: pipViewDate3(item?.created_at), data: item } })} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</button>
                                                         <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number)} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
                                                     </div>
                                                 </td>
