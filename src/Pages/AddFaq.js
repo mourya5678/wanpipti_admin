@@ -104,7 +104,7 @@ const AddFaq = () => {
                                                     </div>
                                                 </div>
                                                 <div className="text-center">
-                                                    <button type="submit" onClick={(e) => handleSubmit(e)} className="ct_yellow_btn ct_btn_h_48 ct_line_height_0 w-auto">Update</button>
+                                                    <button type="submit" onClick={(e) => handleSubmit(e)} className="ct_yellow_btn ct_btn_h_48 ct_line_height_0 w-auto">Submit</button>
                                                 </div>
                                             </div>
                                         </form>
