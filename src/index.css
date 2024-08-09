@@ -170,3 +170,9 @@
 .ct_clr_8C98A9 {
   color: #8c98a9;
 }
+
+.ct_pagination_select_21 {
+  border: 1px solid #d8d8d8;
+  padding: 4px;
+  border-radius: 6px;
+}

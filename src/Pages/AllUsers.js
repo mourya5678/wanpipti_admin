@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
@@ -7,12 +7,21 @@ import { getUsersData, deleteUser } from '../Redux/actions/usersAction';
 import { userModalData } from '../Redux/reducers/usersReducer';
 import { pageRoutes } from '../Routes/pageRoutes';
 import Loader from '../Components/Loader';
+import ReactPagination from '../Layout/ReactPagination';
+import PaginationDropdown from '../Layout/PaginationDropdown';
 
 const AllUsers = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, all_users, userData } = useSelector((state) => state?.usersReducer);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [usersPerPage, setUserPerPages] = useState(10);
+
+    const displayUsers = all_users?.slice(
+        currentPage * usersPerPage,
+        (currentPage + 1) * usersPerPage
+    );
 
     useEffect(() => {
         dispatch(getUsersData());
@@ -25,6 +34,10 @@ const AllUsers = () => {
             }
         };
         dispatch(deleteUser({ payload: { user_id: val }, callback }));
+    };
+
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
     };
 
     if (isLoading) {
@@ -53,8 +66,8 @@ const AllUsers = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {all_users?.length != 0 &&
-                                        all_users?.map((item, i) => (
+                                    {displayUsers?.length != 0 &&
+                                        displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>
@@ -77,6 +90,25 @@ const AllUsers = () => {
                                         ))}
                                 </tbody>
                             </table>
+                        </div>
+                        <div className="mt-3">
+                            {
+                                all_users?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                    <PaginationDropdown
+                                        onChange={(val) => {
+                                            setUserPerPages(val);
+                                            setCurrentPage(0);
+                                        }}
+                                    />
+                                    <ReactPagination
+                                        pageCount={Math.ceil(
+                                            all_users.length / usersPerPage
+                                        )}
+                                        onPageChange={handlePageClick}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
