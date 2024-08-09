@@ -40,7 +40,7 @@ const Dashboard = () => {
                 <div className="ct_inner_dashbaord_main">
                     <h3 className="ct_fs_35 ct_fw_600 py-4 text-white">Dashboard</h3>
                     <div className="row">
-                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6 mb-4 mb-xxl-0">
+                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xxl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6 mb-4 mb-xl-0">
+                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
@@ -66,7 +66,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6 mb-4 mb-xl-0">
+                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
@@ -79,7 +79,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6 mb-4 mb-xl-0">
+                        {/* <div className="col-xxl-3 col-xl-6 col-lg-6 col-md-6 mb-4 mb-xl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
@@ -91,7 +91,7 @@ const Dashboard = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="ct_white_bg ct_mt_28">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
@@ -110,20 +110,20 @@ const Dashboard = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {all_users?.length != 0 &&
-                                        all_users?.slice(0, 5)?.map((item, i) => (
+                                {all_users && all_users?.length != 0 ?
+                                    <tbody>
+                                        {all_users?.slice(0, 5)?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>
                                                     <div className="d-flex align-items-center gap-2">
                                                         <img src={item?.profile_image ?? "assets/img/user124.jpg"} alt="" className="ct_img_36" />
-                                                        <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.username}</h5>
+                                                        <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.username ?? ''}</h5>
                                                     </div>
                                                 </td>
-                                                <td>{item?.full_name}</td>
-                                                <td>{item?.email}</td>
-                                                <td>$5000</td>
+                                                <td>{item?.full_name ?? ''}</td>
+                                                <td>{item?.email ?? ''}</td>
+                                                <td>${item?.wallet?.wallet_balance ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => dispatch(userModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
@@ -133,7 +133,18 @@ const Dashboard = () => {
                                                 </td>
                                             </tr>
                                         ))}
-                                </tbody>
+                                    </tbody>
+                                    :
+                                    <tfoot>
+                                        <tr>
+                                            <td className="text-center bg-transparent border-0" colSpan="5">
+                                                <div className="text-center">
+                                                    <p className="mb-0 mt-3 ct_fs_24 ct_fw_400 ct_ff_poppin ct_clr_8C98A9 text-center">No users found</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                }
                             </table>
                         </div>
                     </div>
@@ -156,14 +167,14 @@ const Dashboard = () => {
                                     <p className="mb-0 text-white">{userData?.full_name}</p>
                                 </div>
                                 <div className="ct_grid_3 ct_grid_3_responsive_3 mt-4">
-                                    <p className="mb-0 text-white">Email Address   </p>
+                                    <p className="mb-0 text-white">Email Address</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">{userData?.email}</p>
+                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.email}</p>
                                 </div>
                                 <div className="ct_grid_3 ct_grid_3_responsive_3 mt-4">
-                                    <p className="mb-0 text-white">Current Balance	</p>
+                                    <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">$5000</p>
+                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance}</p>
                                 </div>
                             </div>
                         </div>

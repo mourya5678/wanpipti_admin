@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
 import Loader from '../Components/Loader';
@@ -7,17 +7,30 @@ import { useNavigate } from 'react-router';
 import { pageRoutes } from '../Routes/pageRoutes';
 import { deleteSetBet, getBetLimitData } from '../Redux/actions/usersAction';
 import { betLimitModalData } from '../Redux/reducers/usersReducer';
-import { pipViewDate2 } from '../Auth/Pip'
+import { pipViewDate2 } from '../Auth/Pip';
+import ReactPagination from '../Layout/ReactPagination';
+import PaginationDropdown from '../Layout/PaginationDropdown';
 
 const GetAllBetsData = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, bet_data, betLimitData } = useSelector((state) => state?.usersReducer);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [usersPerPage, setUserPerPages] = useState(10);
+
+    const displayUsers = bet_data?.slice(
+        currentPage * usersPerPage,
+        (currentPage + 1) * usersPerPage
+    );
 
     useEffect(() => {
         dispatch(getBetLimitData());
     }, []);
+
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
+    };
 
     const deleteBetLimitData = async (val) => {
         await dispatch(deleteSetBet({ payload: val })).then((res) => {
@@ -26,7 +39,7 @@ const GetAllBetsData = () => {
             console.log(err)
         })
     };
-    
+
     if (isLoading) {
         return <Loader />
     }
@@ -53,8 +66,8 @@ const GetAllBetsData = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {bet_data?.length != 0 &&
-                                        bet_data?.map((item, i) => (
+                                    {displayUsers?.length != 0 &&
+                                        displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>{pipViewDate2(item?.set_date) ?? ''}</td>
@@ -71,6 +84,25 @@ const GetAllBetsData = () => {
                                         ))}
                                 </tbody>
                             </table>
+                        </div>
+                        <div className="mt-3">
+                            {
+                                bet_data?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                    <PaginationDropdown
+                                        onChange={(val) => {
+                                            setUserPerPages(val);
+                                            setCurrentPage(0);
+                                        }}
+                                    />
+                                    <ReactPagination
+                                        pageCount={Math.ceil(
+                                            bet_data.length / usersPerPage
+                                        )}
+                                        onPageChange={handlePageClick}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

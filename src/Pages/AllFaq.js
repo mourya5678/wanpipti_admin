@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
@@ -6,12 +6,25 @@ import Loader from '../Components/Loader';
 import Sidebar from '../Components/Sidebar';
 import { deleteFaq, getAllFaq } from '../Redux/actions/usersAction';
 import { pageRoutes } from '../Routes/pageRoutes';
+import ReactPagination from '../Layout/ReactPagination';
+import PaginationDropdown from '../Layout/PaginationDropdown';
 
 const AllFaq = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, all_faq } = useSelector((state) => state.usersReducer);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [usersPerPage, setUserPerPages] = useState(10);
+
+    const displayUsers = all_faq?.message ? [] : all_faq?.length != 0 && all_faq?.slice(
+        currentPage * usersPerPage,
+        (currentPage + 1) * usersPerPage
+    );
+
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
+    };
 
     useEffect(() => {
         dispatch(getAllFaq());
@@ -50,9 +63,9 @@ const AllFaq = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                {all_faq && all_faq?.length != 0 &&
+                                {displayUsers && displayUsers?.length != 0 ?
                                     <tbody>
-                                        {all_faq?.map((item, i) => (
+                                        {displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>{item?.question}</td>
@@ -66,8 +79,37 @@ const AllFaq = () => {
                                             </tr>
                                         ))}
                                     </tbody>
+                                    :
+                                    <tfoot>
+                                        <tr>
+                                            <td className="text-center bg-transparent border-0" colSpan="5">
+                                                <div className="text-center">
+                                                    <p className="mb-0 mt-3 ct_fs_24 ct_fw_400 ct_ff_poppin ct_clr_8C98A9 text-center">No faq found</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 }
                             </table>
+                        </div>
+                        <div className="mt-3">
+                            {
+                                all_faq?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                    <PaginationDropdown
+                                        onChange={(val) => {
+                                            setUserPerPages(val);
+                                            setCurrentPage(0);
+                                        }}
+                                    />
+                                    <ReactPagination
+                                        pageCount={Math.ceil(
+                                            all_faq?.length / usersPerPage
+                                        )}
+                                        onPageChange={handlePageClick}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

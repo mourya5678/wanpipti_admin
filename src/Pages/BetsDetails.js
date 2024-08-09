@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getGamesById } from '../Redux/actions/usersAction';
 import Loader from '../Components/Loader';
 import { viewUserBetDetails } from '../Redux/reducers/usersReducer';
-
+import ReactPagination from '../Layout/ReactPagination';
+import PaginationDropdown from '../Layout/PaginationDropdown';
 
 const BetsDetails = () => {
     const navigate = useNavigate();
@@ -15,6 +16,16 @@ const BetsDetails = () => {
     const { state } = useLocation();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, games_bet_details, user_bet_details } = useSelector((state) => state?.usersReducer);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [usersPerPage, setUserPerPages] = useState(10);
+
+    const displayUsers = games_bet_details?.slice(
+        currentPage * usersPerPage,
+        (currentPage + 1) * usersPerPage
+    );
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
+    };
 
     useEffect(() => {
         const data = {
@@ -51,9 +62,9 @@ const BetsDetails = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                {games_bet_details && games_bet_details?.length != 0 ?
+                                {displayUsers && displayUsers?.length != 0 ?
                                     <tbody>
-                                        {games_bet_details?.map((item) => (
+                                        {displayUsers?.map((item) => (
                                             <tr>
                                                 <td>{item?.user_name}</td>
                                                 <td>{item?.['2pm_choosen_number'] ?? 'NA'}</td>
@@ -79,6 +90,25 @@ const BetsDetails = () => {
                                     </tfoot>
                                 }
                             </table>
+                        </div>
+                        <div className="mt-3">
+                            {
+                                games_bet_details?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                    <PaginationDropdown
+                                        onChange={(val) => {
+                                            setUserPerPages(val);
+                                            setCurrentPage(0);
+                                        }}
+                                    />
+                                    <ReactPagination
+                                        pageCount={Math.ceil(
+                                            games_bet_details.length / usersPerPage
+                                        )}
+                                        onPageChange={handlePageClick}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

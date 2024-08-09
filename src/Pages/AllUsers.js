@@ -65,20 +65,20 @@ const AllUsers = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {displayUsers?.length != 0 &&
-                                        displayUsers?.map((item, i) => (
+                                {displayUsers?.length != 0 ?
+                                    <tbody>
+                                        {displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>
                                                     <div className="d-flex align-items-center gap-2">
                                                         <img src={item?.profile_image ?? "assets/img/user124.jpg"} alt="" className="ct_img_36" />
-                                                        <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.username}</h5>
+                                                        <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.username ?? ''}</h5>
                                                     </div>
                                                 </td>
-                                                <td>{item?.full_name}</td>
-                                                <td>{item?.email}</td>
-                                                <td>$5000</td>
+                                                <td>{item?.full_name ?? ''}</td>
+                                                <td>{item?.email ?? ''}</td>
+                                                <td>${item?.wallet?.wallet_balance ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => dispatch(userModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
@@ -88,7 +88,18 @@ const AllUsers = () => {
                                                 </td>
                                             </tr>
                                         ))}
-                                </tbody>
+                                    </tbody>
+                                    :
+                                    <tfoot>
+                                        <tr>
+                                            <td className="text-center bg-transparent border-0" colSpan="5">
+                                                <div className="text-center">
+                                                    <p className="mb-0 mt-3 ct_fs_24 ct_fw_400 ct_ff_poppin ct_clr_8C98A9 text-center">No users found</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                }
                             </table>
                         </div>
                         <div className="mt-3">
@@ -130,12 +141,13 @@ const AllUsers = () => {
                                 <div className="ct_grid_3 mt-4">
                                     <p className="mb-0 text-white">Email Address   </p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">{userData?.email}</p>
+                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.email}</p>
                                 </div>
+                                {console.log(userData)}
                                 <div className="ct_grid_3 mt-4">
                                     <p className="mb-0 text-white">Current Balance	</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">$5000</p>
+                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance}</p>
                                 </div>
                             </div>
                         </div>

@@ -7,16 +7,29 @@ import Sidebar from '../Components/Sidebar';
 import { getAllGames } from '../Redux/actions/usersAction';
 import { pageRoutes } from '../Routes/pageRoutes';
 import { pipViewDate2, pipViewDate3 } from '../Auth/Pip';
+import ReactPagination from '../Layout/ReactPagination';
+import PaginationDropdown from '../Layout/PaginationDropdown';
 
 const GamesManagement = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, all_games } = useSelector((state) => state?.usersReducer);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [usersPerPage, setUserPerPages] = useState(10);
+
+    const displayUsers = all_games?.slice(
+        currentPage * usersPerPage,
+        (currentPage + 1) * usersPerPage
+    );
 
     useEffect(() => {
         dispatch(getAllGames());
     }, []);
+
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
+    };
 
     if (isLoading) {
         return <Loader />
@@ -45,9 +58,9 @@ const GamesManagement = () => {
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {all_games?.length != 0 &&
-                                        all_games?.map((item, i) => (
+                                {displayUsers?.length != 0 ?
+                                    <tbody>
+                                        {displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>{pipViewDate3(item?.created_at) ?? 'NA'}</td>
@@ -61,10 +74,41 @@ const GamesManagement = () => {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        ))}
-                                </tbody >
+                                        ))
+                                        }
+                                    </tbody >
+                                    :
+                                    <tfoot>
+                                        <tr>
+                                            <td className="text-center bg-transparent border-0" colSpan="5">
+                                                <div className="text-center">
+                                                    <p className="mb-0 mt-3 ct_fs_24 ct_fw_400 ct_ff_poppin ct_clr_8C98A9 text-center">No games found</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                }
                             </table >
                         </div >
+                        <div className="mt-3">
+                            {
+                                all_games?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                    <PaginationDropdown
+                                        onChange={(val) => {
+                                            setUserPerPages(val);
+                                            setCurrentPage(0);
+                                        }}
+                                    />
+                                    <ReactPagination
+                                        pageCount={Math.ceil(
+                                            all_games.length / usersPerPage
+                                        )}
+                                        onPageChange={handlePageClick}
+                                        currentPage={currentPage}
+                                    />
+                                </div>
+                            }
+                        </div>
                     </div >
                 </div >
             </div >
