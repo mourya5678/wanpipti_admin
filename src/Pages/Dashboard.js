@@ -156,22 +156,22 @@ const Dashboard = () => {
                                 <div className="ct_grid_3 justify-content-center ct_grid_3_responsive_3">
                                     <p className="mb-0 text-white">User Name</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white text-end">{userData?.username ?? ''}</p>
+                                    <p className="mb-0 text-white">{userData?.username ?? ''}</p>
                                 </div>
                                 <div className="ct_grid_3  justify-content-center ct_grid_3_responsive_3 mt-4">
                                     <p className="mb-0 text-white">Full Name</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white text-end">{userData?.full_name ?? ''}</p>
+                                    <p className="mb-0 text-white">{userData?.full_name ?? ''}</p>
                                 </div>
                                 <div className="ct_grid_3  justify-content-center ct_grid_3_responsive_3 mt-4">
                                     <p className="mb-0 text-white">Email Address</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white text-end" style={{ wordBreak: "break-all" }}>{userData?.email ?? ''}</p>
+                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.email ?? ''}</p>
                                 </div>
                                 <div className="ct_grid_3  justify-content-center ct_grid_3_responsive_3 mt-4">
                                     <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white text-end">${userData?.wallet?.wallet_balance ?? 0}</p>
+                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance ?? 0}</p>
                                 </div>
                             </div>
                         </div>
