@@ -5,11 +5,14 @@ import Sidebar from '../Components/Sidebar';
 import ErrorMessage from "../Components/ErrorMessage";
 import { pageRoutes } from '../Routes/pageRoutes';
 import { Formik } from "formik";
-import { AddWinningAmountSchema } from '../Auth/Schema';
-import { useSelector } from 'react-redux';
+import { UpdateWinningAmountSchema } from '../Auth/Schema';
+import { useDispatch, useSelector } from 'react-redux';
+import { UpdateGameDetail } from '../Redux/actions/usersAction';
+import { pipViewDate2 } from '../Auth/Pip';
 
 const UpdateWinningNumber = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { state } = useLocation();
     const initialState = {
@@ -21,9 +24,22 @@ const UpdateWinningNumber = () => {
 
     const onHandleUpdateWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
+        const callback = (response) => {
+            if (response?.success) {
+                navigate(-1);
+            }
+        };
+        const data = {
+            created_at: values?.date,
+            games: [
+                { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm },
+                { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm },
+                { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm }
+            ]
+        }
+        dispatch(UpdateGameDetail({ payload: data, callback }));
     };
 
-    console.log({ state });
 
     return (
         <main className={`ct_dashboard_main_bg ${isToggle && 'ct_collapsed_sidebar'}`}>
@@ -43,7 +59,7 @@ const UpdateWinningNumber = () => {
                                 <div className="ct_border_1_black">
                                     <Formik
                                         initialValues={initialState}
-                                        validationSchema={AddWinningAmountSchema}
+                                        validationSchema={UpdateWinningAmountSchema}
                                         onSubmit={(values, actions) => {
                                             onHandleUpdateWinningNumbers(values, actions);
                                         }}

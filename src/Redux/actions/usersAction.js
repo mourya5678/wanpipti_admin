@@ -18,7 +18,9 @@ import {
     addNewFaqEndPointURL,
     getAllFaqEndPointURL,
     deleteFaqEndPointURl,
-    updateFaqEndPointURL
+    updateFaqEndPointURL,
+    gameDetailUpdateEndPointURL,
+    getDahboardDataEndPointURL
 } from "../../Routes/bakendEndPoint";
 
 export const getUsersData = createAsyncThunk("user-data", async () => {
@@ -281,6 +283,34 @@ export const UpdateNewQuiz = createAsyncThunk("update_new_quiz", async (props) =
         return response;
     } catch (error) {
         callback(error ?? null);
+        return error ?? null
+    }
+});
+
+export const UpdateGameDetail = createAsyncThunk("update-game-details", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: gameDetailUpdateEndPointURL,
+            method: "POST",
+            data: payload,
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
+    }
+});
+
+export const getDashboardData = createAsyncThunk("get-dahboard", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getDahboardDataEndPointURL,
+            method: "GET",
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
         return error ?? null
     }
 });

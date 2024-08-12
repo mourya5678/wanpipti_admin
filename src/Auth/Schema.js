@@ -88,3 +88,19 @@ export const AddFaqSchema = Yup.object().shape({
     question: Yup.string().required("Please enter question"),
     answer: Yup.string().required("Please enter answer")
 });
+
+export const UpdateWinningAmountSchema = Yup.object().shape({
+    date: Yup.string().required("Please select Date"),
+    two_pm: Yup.number()
+        .min(0, "The number must be at least 0")
+        .max(99, "The number must be at most 99")
+        .required("Please enter a 2PM Winning number"),
+    five_pm: Yup.number()
+        .min(0, "The number must be at least 0")
+        .max(99, "The number must be at most 99")
+        .required("Please enter a 5PM Winning number"),
+    nine_pm: Yup.number()
+        .min(0, "The number must be at least 0")
+        .max(99, "The number must be at most 99")
+        .required("Please enter a 6PM Winning number"),
+});

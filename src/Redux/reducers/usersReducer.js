@@ -14,7 +14,9 @@ import {
     deleteFaq,
     getGamesById,
     UpdateNewQuiz,
-    getBetLimitData
+    getBetLimitData,
+    UpdateGameDetail,
+    getDashboardData
 } from "../actions/usersAction";
 
 const initialState = {
@@ -27,7 +29,8 @@ const initialState = {
     all_faq: [],
     games_bet_details: [],
     user_bet_details: {},
-    bet_data: []
+    bet_data: [],
+    dashboardData: {}
 };
 
 export const userSlice = createSlice({
@@ -210,6 +213,30 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
         builder.addCase(getBetLimitData.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // UpdateGameDetail
+        builder.addCase(UpdateGameDetail.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(UpdateGameDetail.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(UpdateGameDetail.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // getDashboardData
+        builder.addCase(getDashboardData.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getDashboardData.fulfilled, (state, action) => {
+            const { data } = action?.payload || {};
+            state.dashboardData = data ?? {}
+            state.isLoading = false;
+        });
+        builder.addCase(getDashboardData.rejected, (state, action) => {
             state.isLoading = false;
         });
     },

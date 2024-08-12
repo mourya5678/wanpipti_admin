@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://192.168.29.104:4000/admin/';
+export const BASE_URL = 'http://13.55.42.229:4000/admin/';
 
 export const loginEndPointURL = "login";
 export const forgotPasswordEndPointURL = "forgot-password";
@@ -22,3 +22,6 @@ export const addNewFaqEndPointURL = "create-faq";
 export const getAllFaqEndPointURL = "get-faq/all";
 export const deleteFaqEndPointURl = "delete-faq/"
 export const updateFaqEndPointURL = "update-faq/";
+
+export const gameDetailUpdateEndPointURL = "update-game-by-admin";
+export const getDahboardDataEndPointURL = "get-dashboard-data";

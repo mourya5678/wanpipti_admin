@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
-import { deleteUser, getUsersData } from '../Redux/actions/usersAction';
+import { deleteUser, getDashboardData, getUsersData } from '../Redux/actions/usersAction';
 import { userModalData } from '../Redux/reducers/usersReducer';
 import { pageRoutes } from '../Routes/pageRoutes';
 import Loader from '../Components/Loader';
@@ -12,10 +12,11 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
-    const { isLoading, all_users, userData } = useSelector((state) => state?.usersReducer);
+    const { isLoading, all_users, userData, dashboardData } = useSelector((state) => state?.usersReducer);
 
     useEffect(() => {
         dispatch(getUsersData());
+        dispatch(getDashboardData());
     }, []);
 
     const handleDeleteUser = (val) => {
@@ -40,12 +41,13 @@ const Dashboard = () => {
                 <div className="ct_inner_dashbaord_main">
                     <h3 className="ct_fs_35 ct_fw_600 py-4 text-white">Dashboard</h3>
                     <div className="row">
+                        {console.log(dashboardData, "dashboardData")}
                         <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xxl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
                                         <p className="ct_fw_600">All Users</p>
-                                        <h2 className="ct_fs_28 ct_fw_600 text-white">40,689</h2>
+                                        <h2 className="ct_fs_28 ct_fw_600 text-white">{dashboardData?.all_user_count ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
                                         <i className="fa-solid fa-users"></i>
@@ -57,8 +59,8 @@ const Dashboard = () => {
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
-                                        <p className="ct_fw_600">Total Earning</p>
-                                        <h2 className="ct_fs_28 ct_fw_600 text-white">$ 2514</h2>
+                                        <p className="ct_fw_600">Total Games</p>
+                                        <h2 className="ct_fs_28 ct_fw_600 text-white">{dashboardData?.all_game_count ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
                                         <i className="fa-solid fa-sack-dollar"></i>
@@ -71,7 +73,7 @@ const Dashboard = () => {
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
                                         <p className="ct_fw_600">Total Bet Amount</p>
-                                        <h2 className="ct_fs_28 ct_fw_600 text-white">$236</h2>
+                                        <h2 className="ct_fs_28 ct_fw_600 text-white">${dashboardData?.total_bet_amount ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
                                         <i className="fa-solid fa-hand-holding-dollar"></i>
