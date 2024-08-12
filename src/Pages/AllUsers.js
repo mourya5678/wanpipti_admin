@@ -133,28 +133,36 @@ const AllUsers = () => {
                         <div className="modal-body py-0">
                             <div className="ct_view_user_detail">
                                 <h4 className="ct_fs_28 ct_fw_600 mb-5 text-center text-white">User Detail</h4>
-                                <div className="ct_grid_3">
+                                <div className="text-center mb-4">
+                                    <img src={userData?.profile_image ?? "assets/img/user124.jpg"} className="ct_img_148" />
+                                </div>
+                                <div className="ct_grid_3 justify-content-center ct_grid_3_responsive_3">
                                     <p className="mb-0 text-white">User Name</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">{userData?.full_name}</p>
+                                    <p className="mb-0 text-white text-end">{userData?.username ?? ''}</p>
                                 </div>
-                                <div className="ct_grid_3 mt-4">
-                                    <p className="mb-0 text-white">Email Address   </p>
+                                <div className="ct_grid_3 justify-content-center ct_grid_3_responsive_3 mt-4">
+                                    <p className="mb-0 text-white">Full Name</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.email}</p>
+                                    <p className="mb-0 text-white  text-end">{userData?.full_name ?? ''}</p>
+                                </div>
+                                <div className="ct_grid_3 mt-4 justify-content-center">
+                                    <p className="mb-0 text-white">Email Address</p>
+                                    <p className="mb-0 text-white">:</p>
+                                    <p className="mb-0 text-white  text-end" style={{ wordBreak: "break-all" }}>{userData?.email}</p>
                                 </div>
                                 {console.log(userData)}
-                                <div className="ct_grid_3 mt-4">
-                                    <p className="mb-0 text-white">Current Balance	</p>
+                                <div className="ct_grid_3 mt-4 justify-content-center">
+                                    <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance}</p>
+                                    <p className="mb-0 text-white  text-end">${userData?.wallet?.wallet_balance}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </main >
     )
 }
 

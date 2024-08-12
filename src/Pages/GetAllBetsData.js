@@ -71,11 +71,10 @@ const GetAllBetsData = () => {
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>{pipViewDate2(item?.set_date) ?? ''}</td>
-                                                <td>{item?.bet_number ?? ''}</td>
+                                                <td>{item?.bet_number ? item?.bet_number?.toString()?.length == 1 ? `0${item?.bet_number}` : item?.bet_number : 'NA'}</td>
                                                 <td>{item?.max_bet_limit ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
-                                                        <a href="javascript:void(0)" onClick={() => dispatch(betLimitModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
                                                         <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_bets, { state: { data: item } })} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
                                                         <a href="javascript:void(0)" onClick={() => deleteBetLimitData(item?.id)} className="ct_delete_btn"><i className="fa-solid fa-trash-can"></i></a>
                                                     </div>

@@ -45,7 +45,7 @@ export const AddWinningAmountSchema = Yup.object().shape({
     nine_pm: Yup.number()
         .min(0, "The number must be at least 0")
         .max(99, "The number must be at most 99")
-        .required("Please enter a 6PM Winning number"),
+        .required("Please enter a 9PM Winning number"),
 });
 
 export const SetBetLimitSchema = Yup.object().shape({
@@ -53,10 +53,10 @@ export const SetBetLimitSchema = Yup.object().shape({
     bet_number: Yup.number()
         .min(0, "The bet number must be at least 0")
         .max(99, "The bet number must be at most 99")
-        .required("Please enter a 2PM Bet Limit"),
+        .required("Please enter Bet Number"),
     max_bet_limit: Yup.number()
         .min(0, "The bet max bet limit must be at least 0")
-        .required("Please enter a 5PM Bet Limit"),
+        .required("Please enter Max Bet Limit"),
 });
 
 export const ChangePasswordSchema = Yup.object().shape({
@@ -102,5 +102,5 @@ export const UpdateWinningAmountSchema = Yup.object().shape({
     nine_pm: Yup.number()
         .min(0, "The number must be at least 0")
         .max(99, "The number must be at most 99")
-        .required("Please enter a 6PM Winning number"),
+        .required("Please enter a 9PM Winning number"),
 });

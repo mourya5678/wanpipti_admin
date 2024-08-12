@@ -16,7 +16,8 @@ import {
     UpdateNewQuiz,
     getBetLimitData,
     UpdateGameDetail,
-    getDashboardData
+    getDashboardData,
+    AllTrasactionWallet
 } from "../actions/usersAction";
 
 const initialState = {
@@ -30,7 +31,8 @@ const initialState = {
     games_bet_details: [],
     user_bet_details: {},
     bet_data: [],
-    dashboardData: {}
+    dashboardData: {},
+    all_transaction: []
 };
 
 export const userSlice = createSlice({
@@ -237,6 +239,19 @@ export const userSlice = createSlice({
             state.isLoading = false;
         });
         builder.addCase(getDashboardData.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // AllTrasactionWallet
+        builder.addCase(AllTrasactionWallet.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(AllTrasactionWallet.fulfilled, (state, action) => {
+            const { data } = action?.payload || [];
+            state.all_transaction = data ?? []
+            state.isLoading = false;
+        });
+        builder.addCase(AllTrasactionWallet.rejected, (state, action) => {
             state.isLoading = false;
         });
     },

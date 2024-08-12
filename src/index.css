@@ -227,3 +227,7 @@
 .pagination li.active a {
   color: #000 !important;
 }
+
+.ct_admin_logo img {
+  width: 100px;
+}

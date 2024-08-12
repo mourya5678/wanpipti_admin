@@ -89,9 +89,9 @@
   }
 }
 @media screen and (max-width: 767px) {
-  .ct_right_header {
+  /* .ct_right_header {
     flex-direction: column;
-  }
+  } */
   .ct_right_header_left {
     width: 100%;
   }

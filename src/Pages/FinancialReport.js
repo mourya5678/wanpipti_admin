@@ -19,7 +19,7 @@ const FinancialReport = () => {
         currentPage * usersPerPage,
         (currentPage + 1) * usersPerPage
     );
-
+    console.log({ all_transaction })
     const handlePageClick = (data) => {
         setCurrentPage(data.selected);
     };
@@ -40,7 +40,6 @@ const FinancialReport = () => {
                     <div className="ct_white_bg">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
                             <h4 className="ct_fs_24  ct_fw_600 text-white">Financial Report</h4>
-
                         </div>
                         <div className="table-responsive mt-4">
                             <table className="table ct_custom_table">
@@ -63,8 +62,8 @@ const FinancialReport = () => {
                                                         <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.user?.full_name ?? ''}</h5>
                                                     </div>
                                                 </td>
-                                                <td className={`${item?.transaction_type == "withdraw" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{item?.transaction_type ?? ''}</td>
-                                                <td className={`${item?.transaction_type == "withdraw" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{item?.amount ?? 0}</td>
+                                                <td className={`${item?.transaction_type == "Withdraw" || item?.transaction_type == "withdraw" || item?.transaction_type == "BetPlace" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{item?.transaction_type ?? ''}</td>
+                                                <td className={`${item?.transaction_type == "Withdraw" || item?.transaction_type == "withdraw" || item?.transaction_type == "BetPlace" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{item?.amount ?? 0}</td>
                                                 <td className="text-end">{item?.closing_balance ?? 0}</td>
                                             </tr>
                                         ))}

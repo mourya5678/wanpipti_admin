@@ -67,9 +67,9 @@ const BetsDetails = () => {
                                         {displayUsers?.map((item) => (
                                             <tr>
                                                 <td>{item?.user_name}</td>
-                                                <td>{item?.['2pm_choosen_number'] ?? 'NA'}</td>
-                                                <td>{item?.['5pm_choosen_number'] ?? 'NA'}</td>
-                                                <td>{item?.['9pm_choosen_number'] ?? 'NA'}</td>
+                                                <td>{item?.['2pm_choosen_number'] ? item?.["2pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["2pm_choosen_number"]}` : item?.["2pm_choosen_number"] : 'NA'}</td>
+                                                <td>{item?.['5pm_choosen_number'] ? item?.["5pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["5pm_choosen_number"]}` : item?.["5pm_choosen_number"] : 'NA'}</td>
+                                                <td>{item?.['9pm_choosen_number'] ? item?.["9pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["9pm_choosen_number"]}` : item?.["9pm_choosen_number"] : 'NA'}</td>
                                                 <td>
                                                     <div className="ct_action_btns" onClick={() => dispatch(viewUserBetDetails(item))}>
                                                         <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>

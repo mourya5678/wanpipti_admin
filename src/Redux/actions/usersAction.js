@@ -168,6 +168,7 @@ export const getBetLimitData = createAsyncThunk("bet-limit", async () => {
         console.log(error)
     }
 });
+
 export const AddBetLimitForNumber = createAsyncThunk("add-bet-limit", async (props) => {
     const { payload, callback } = props;
     try {
@@ -233,7 +234,6 @@ export const AddNewQuiz = createAsyncThunk("add_new_quiz", async (props) => {
             url: addNewFaqEndPointURL,
             method: "POST",
             data: payload,
-            isErrorToast: false
         });
         callback(response);
         return response;
@@ -275,9 +275,8 @@ export const UpdateNewQuiz = createAsyncThunk("update_new_quiz", async (props) =
     try {
         const response = await API_REQUEST({
             url: updateFaqEndPointURL + id,
-            method: "UPDATE",
+            method: "PUT",
             data: payload,
-            isErrorToast: false
         });
         callback(response);
         return response;

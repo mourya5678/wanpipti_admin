@@ -42,7 +42,7 @@ const EditFaq = () => {
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg p-4">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
-                            <h4 className="ct_fs_24 ps-md-4 ct_fw_600 text-white">Add FAQ</h4>
+                            <h4 className="ct_fs_24 ps-md-4 ct_fw_600 text-white">Update FAQ</h4>
                         </div>
                         <div className="row">
                             <div className="col-md-8 mx-auto">

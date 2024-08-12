@@ -64,9 +64,9 @@ const GamesManagement = () => {
                                             <tr>
                                                 <td>{i + 1}</td>
                                                 <td>{pipViewDate3(item?.created_at) ?? 'NA'}</td>
-                                                <td>{item?.["2 PM_winning_number"] ?? 'NA'}</td>
-                                                <td>{item?.["5 PM_winning_number"] ?? 'NA'}</td>
-                                                <td>{item?.["9 PM_winning_number"] ?? 'NA'}</td>
+                                                <td>{item?.["2 PM_winning_number"] ? item?.["2 PM_winning_number"]?.toString()?.length == 1 ? `0${item?.["2 PM_winning_number"]}` : item?.["2 PM_winning_number"] : 'NA'}</td>
+                                                <td>{item?.["5 PM_winning_number"] ? item?.["5 PM_winning_number"]?.toString()?.length == 1 ? `0${item?.["5 PM_winning_number"]}` : item?.["5 PM_winning_number"] : 'NA'}</td>
+                                                <td>{item?.["9 PM_winning_number"] ? item?.["9 PM_winning_number"]?.toString()?.length == 1 ? `0${item?.["9 PM_winning_number"]}` : item?.["9 PM_winning_number"] : 'NA'}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <button onClick={() => navigate(pageRoutes.bet_detail, { state: { created_at: pipViewDate3(item?.created_at), data: item } })} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</button>
