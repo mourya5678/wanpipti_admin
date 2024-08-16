@@ -9,6 +9,7 @@ import { pageRoutes } from '../Routes/pageRoutes';
 import { pipViewDate2, pipViewDate3 } from '../Auth/Pip';
 import ReactPagination from '../Layout/ReactPagination';
 import PaginationDropdown from '../Layout/PaginationDropdown';
+import { message } from 'antd';
 
 const GamesManagement = () => {
     const navigate = useNavigate();
@@ -29,6 +30,28 @@ const GamesManagement = () => {
 
     const handlePageClick = (data) => {
         setCurrentPage(data.selected);
+    };
+
+    const updateNavigation = (date, item) => {
+        let today = new Date();
+        let bDate = new Date(date);
+        let todayDate = today.getDate();
+        let bDateDate = bDate.getDate();
+        let todayMonth = today.getMonth();
+        let bDateMonth = bDate.getMonth();
+        if (todayMonth < bDateMonth) {
+            navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
+        } else if (todayMonth > bDateMonth) {
+            message.error("Result has already been declared for the user, it cannot be updated now!");
+        } else {
+            if (todayDate < bDateDate) {
+                navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
+            } else if (todayDate > bDateDate) {
+                message.error("Result has already been declared for the user, it cannot be updated now!");
+            } else {
+                navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: true } })
+            }
+        }
     };
 
     if (isLoading) {
@@ -70,7 +93,9 @@ const GamesManagement = () => {
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <button onClick={() => navigate(pageRoutes.bet_detail, { state: { created_at: pipViewDate3(item?.created_at), data: item } })} className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1">View Bets</button>
-                                                        <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(item?.created_at), data: item } })} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
+                                                        <a href="javascript:void(0)" onClick={() => updateNavigation(item?.created_at, item)
+                                                            // navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(item?.created_at), data: item } })
+                                                        } className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
@@ -16,6 +16,9 @@ const UpdateWinningNumber = () => {
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { state } = useLocation();
+    const [istwo_pm, setIsTwoPm] = useState(false);
+    const [isfive_pm, setIsFivePm] = useState(false);
+    const [isnine_pm, setIsNinePm] = useState(false);
     const initialState = {
         date: state?.created_at,
         two_pm: state?.data?.['2 PM_winning_number'] ?? '',
@@ -23,7 +26,34 @@ const UpdateWinningNumber = () => {
         nine_pm: state?.data?.['9 PM_winning_number'] ?? ''
     };
 
-    console.log(state?.created_at);
+    useEffect(() => {
+        if (state?.isToday == false) {
+            setIsTwoPm(false);
+            setIsFivePm(false);
+            setIsNinePm(false);
+        } else {
+            const intervalId = setInterval(() => {
+                const now1 = new Date();
+                const hours1 = now1.getHours();
+                const minutes1 = now1.getMinutes();
+                if (hours1 > 13 || (hours1 === 13 && minutes1 >= 50)) {
+                    setIsTwoPm(true);
+                    setIsFivePm(false);
+                    setIsNinePm(false);
+                } else if (hours1 > 16 || (hours1 === 16 && minutes1 >= 50)) {
+                    setIsTwoPm(true);
+                    setIsFivePm(true);
+                    setIsNinePm(false);
+                }
+                else if (hours1 > 20 || (hours1 === 20 && minutes1 >= 50)) {
+                    setIsTwoPm(true);
+                    setIsFivePm(true);
+                    setIsNinePm(true);
+                }
+            }, 1000);
+            return () => clearInterval(intervalId);
+        }
+    }, []);
 
     const onHandleUpdateWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
@@ -106,6 +136,7 @@ const UpdateWinningNumber = () => {
                                                                 onBlur={handleBlur}
                                                                 value={values.two_pm}
                                                                 onWheel={() => document.activeElement.blur()}
+                                                                readOnly={istwo_pm}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
@@ -125,6 +156,7 @@ const UpdateWinningNumber = () => {
                                                                 onBlur={handleBlur}
                                                                 value={values.five_pm}
                                                                 onWheel={() => document.activeElement.blur()}
+                                                                readOnly={isfive_pm}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
