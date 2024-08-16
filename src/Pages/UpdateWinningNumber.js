@@ -41,12 +41,13 @@ const UpdateWinningNumber = () => {
                     setIsTwoPm(true);
                     setIsFivePm(false);
                     setIsNinePm(false);
-                } else if (hours1 > 16 || (hours1 === 16 && minutes1 >= 50)) {
+                }
+                if (hours1 > 16 || (hours1 === 16 && minutes1 >= 50)) {
                     setIsTwoPm(true);
                     setIsFivePm(true);
                     setIsNinePm(false);
                 }
-                else if (hours1 > 20 || (hours1 === 20 && minutes1 >= 50)) {
+                if (hours1 > 20 || (hours1 === 20 && minutes1 >= 50)) {
                     setIsTwoPm(true);
                     setIsFivePm(true);
                     setIsNinePm(true);
