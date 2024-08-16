@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
@@ -21,6 +21,7 @@ const UpdateBetLimit = () => {
         set_date: pipViewDate3(state?.data?.set_date) ?? '',
         bet_number: state?.data?.bet_number ?? '',
         max_bet_limit: state?.data?.max_bet_limit ?? '',
+        game_time: state?.data?.game_time ?? ''
     };
 
     const onHandleSetBetLimit = async (values, { setSubmitting }) => {
@@ -68,7 +69,7 @@ const UpdateBetLimit = () => {
                                                 <div className="row mt-4">
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">Date<span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">Date</label>
                                                             <input
                                                                 id="set_date"
                                                                 type="text"
@@ -85,7 +86,7 @@ const UpdateBetLimit = () => {
                                                     </div>
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">Bet Number <span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">Bet Number</label>
                                                             <input
                                                                 id="bet_number"
                                                                 type="number"
@@ -117,6 +118,18 @@ const UpdateBetLimit = () => {
                                                                 errors={errors}
                                                                 touched={touched}
                                                                 fieldName="max_bet_limit"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-12 mb-4">
+                                                        <div className="form-group">
+                                                            <label className="mb-2 text-white">Game Time</label>
+                                                            <input
+                                                                id="game_time"
+                                                                type="text"
+                                                                className="ct_input form-control"
+                                                                value={values.game_time}
+                                                                readOnly
                                                             />
                                                         </div>
                                                     </div>

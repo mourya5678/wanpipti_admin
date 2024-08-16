@@ -60,7 +60,7 @@ const AllUsers = () => {
                                         <th>S No.</th>
                                         <th>User Name</th>
                                         <th>Full Name</th>
-                                        <th>Email Address</th>
+                                        <th>Mobile Number</th>
                                         <th>Current Balance</th>
                                         <th>Action</th>
                                     </tr>
@@ -77,7 +77,7 @@ const AllUsers = () => {
                                                     </div>
                                                 </td>
                                                 <td>{item?.full_name ?? ''}</td>
-                                                <td>{item?.email ?? ''}</td>
+                                                <td>{item?.mobile_number ?? ''}</td>
                                                 <td>${item?.wallet?.wallet_balance ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
@@ -147,15 +147,14 @@ const AllUsers = () => {
                                     <p className="mb-0 text-white ">{userData?.full_name ?? ''}</p>
                                 </div>
                                 <div className="ct_grid_3 mt-4 justify-content-center">
-                                    <p className="mb-0 text-white">Email Address</p>
+                                    <p className="mb-0 text-white">Mobile Number</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.email}</p>
+                                    <p className="mb-0 text-white" style={{ wordBreak: "break-all" }}>{userData?.mobile_number ?? ''}</p>
                                 </div>
-                                {console.log(userData)}
                                 <div className="ct_grid_3 mt-4 justify-content-center">
                                     <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance}</p>
+                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance ?? 0}</p>
                                 </div>
                             </div>
                         </div>

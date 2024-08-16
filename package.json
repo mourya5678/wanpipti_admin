@@ -1,7 +1,7 @@
 {
   "name": "wanpipti_admin",
   "version": "0.1.0",
-  "homepage": "http://13.55.42.229/admin/",
+  "homepage": "http://13.55.42.229/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

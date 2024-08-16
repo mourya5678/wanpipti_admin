@@ -15,10 +15,11 @@ const SetBet = () => {
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading } = useSelector((state) => state?.usersReducer);
+    const [game_time, setGameTime] = useState("2 PM");
     const initialState = {
         set_date: '',
         bet_number: '',
-        max_bet_limit: '',
+        max_bet_limit: ''
     };
 
     const onHandleSetBetLimit = async (values, { setSubmitting }) => {
@@ -28,9 +29,14 @@ const SetBet = () => {
                 navigate(-1);
             }
         };
-        dispatch(AddBetLimitForNumber({ payload: values, callback }));
+        const data = {
+            set_date: values?.set_date,
+            bet_number: values?.bet_number,
+            max_bet_limit: values?.max_bet_limit,
+            game_time: game_time
+        }
+        dispatch(AddBetLimitForNumber({ payload: data, callback }));
     };
-
 
     if (isLoading) {
         return <Loader />
@@ -120,6 +126,16 @@ const SetBet = () => {
                                                                 touched={touched}
                                                                 fieldName="max_bet_limit"
                                                             />
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-md-12 mb-4">
+                                                        <div className="form-group">
+                                                            <label className="mb-2 text-white">Game Time<span className="ct_required_text">*</span></label>
+                                                            <select className="ct_input form-control" value={game_time} onChange={(e) => setGameTime(e.target.value)}>
+                                                                <option value="2 PM">2 PM</option>
+                                                                <option value="5 PM">5 PM</option>
+                                                                <option value="9 PM">9 PM</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div className="text-center">

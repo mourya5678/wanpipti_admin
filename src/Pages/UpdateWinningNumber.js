@@ -9,6 +9,7 @@ import { UpdateWinningAmountSchema } from '../Auth/Schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateGameDetail } from '../Redux/actions/usersAction';
 import { pipViewDate2 } from '../Auth/Pip';
+import { message } from 'antd';
 
 const UpdateWinningNumber = () => {
     const navigate = useNavigate();
@@ -22,22 +23,28 @@ const UpdateWinningNumber = () => {
         nine_pm: state?.data?.['9 PM_winning_number'] ?? ''
     };
 
+    console.log(state?.created_at);
+
     const onHandleUpdateWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
-        const callback = (response) => {
-            if (response?.success) {
-                navigate(-1);
+        if (values?.two_pm || values?.five_pm || values?.nine_pm) {
+            const callback = (response) => {
+                if (response?.success) {
+                    navigate(-1);
+                }
+            };
+            const data = {
+                created_at: values?.date,
+                games: [
+                    { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm ?? '' },
+                    { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm ?? '' },
+                    { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm ?? '' }
+                ]
             }
-        };
-        const data = {
-            created_at: values?.date,
-            games: [
-                { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm },
-                { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm },
-                { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm }
-            ]
+            dispatch(UpdateGameDetail({ payload: data, callback }));
+        } else {
+            message.error("Please enter winning number anyone of them")
         }
-        dispatch(UpdateGameDetail({ payload: data, callback }));
     };
 
 

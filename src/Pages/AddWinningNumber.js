@@ -10,6 +10,7 @@ import { AddWinningAmountSchema } from '../Auth/Schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { addWinningNumber } from '../Redux/actions/usersAction';
 import Loader from '../Components/Loader';
+import { message } from 'antd';
 
 const AddWinningNumber = () => {
     const navigate = useNavigate();
@@ -25,20 +26,24 @@ const AddWinningNumber = () => {
 
     const onHandleAddWinningNumbers = async (values, { setSubmitting }) => {
         setSubmitting(false);
-        const callback = (response) => {
-            if (response?.success) {
-                navigate(-1);
+        if (values?.two_pm || values?.five_pm || values?.nine_pm) {
+            const callback = (response) => {
+                if (response?.success) {
+                    navigate(-1);
+                }
+            };
+            const data = {
+                created_at: pipViewDate2(values?.created_at),
+                games: [
+                    { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm ?? '' },
+                    { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm ?? '' },
+                    { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm ?? '' }
+                ]
             }
-        };
-        const data = {
-            created_at: pipViewDate2(values?.created_at),
-            games: [
-                { "game_time": "2 PM", "status": "active", "winning_number": values?.two_pm },
-                { "game_time": "5 PM", "status": "active", "winning_number": values?.five_pm },
-                { "game_time": "9 PM", "status": "active", "winning_number": values?.nine_pm }
-            ]
+            dispatch(addWinningNumber({ payload: data, callback }));
+        } else {
+            message.error("Please enter winning number anyone of them")
         }
-        dispatch(addWinningNumber({ payload: data, callback }));
     };
 
     if (isLoading) {

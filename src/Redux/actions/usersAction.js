@@ -149,6 +149,7 @@ export const AllTrasactionWallet = createAsyncThunk("wallet-transaction", async 
         const response = await API_REQUEST({
             url: getAllWalletTransactionENdPointURL,
             method: "GET",
+            isErrorToast: false
         });
         return response;
     } catch (error) {

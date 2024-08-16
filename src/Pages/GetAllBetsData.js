@@ -62,6 +62,7 @@ const GetAllBetsData = () => {
                                         <th>Date</th>
                                         <th>Bet Number</th>
                                         <th>Bet Limit</th>
+                                        <th>Game Time</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -70,9 +71,10 @@ const GetAllBetsData = () => {
                                         displayUsers?.map((item, i) => (
                                             <tr>
                                                 <td>{i + 1}</td>
-                                                <td>{pipViewDate2(item?.set_date) ?? ''}</td>
+                                                <td>{pipViewDate2(item?.set_date) ?? 'NA'}</td>
                                                 <td>{item?.bet_number ? item?.bet_number?.toString()?.length == 1 ? `0${item?.bet_number}` : item?.bet_number : 'NA'}</td>
-                                                <td>{item?.max_bet_limit ?? ''}</td>
+                                                <td>{item?.max_bet_limit ?? 'NA'}</td>
+                                                <td>{item?.game_time ?? 'NA'}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.update_bets, { state: { data: item } })} className="ct_edit_btn"><i className="fa-solid fa-pen"></i></a>

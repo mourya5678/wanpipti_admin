@@ -55,7 +55,7 @@ export const userSlice = createSlice({
             state.isLoading = true;
         });
         builder.addCase(getUsersData.fulfilled, (state, action) => {
-            const { data } = action?.payload || {};
+            const { data } = action?.payload || [];
             state.all_users = data ?? []
             state.isLoading = false;
         });

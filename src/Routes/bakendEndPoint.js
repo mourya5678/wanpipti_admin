@@ -1,8 +1,6 @@
-// Local
-// export const BASE_URL = 'http://192.168.29.104:4000/admin/';
+// export const BASE_URL = 'http://192.168.29.104:4000/admin/'; // Local URL
 
-// Live
-export const BASE_URL = 'http://13.55.42.229:4000/admin/';
+export const BASE_URL = 'http://13.55.42.229:4000/admin/';  // Live URL
 
 export const loginEndPointURL = "login";
 export const forgotPasswordEndPointURL = "forgot-password";
