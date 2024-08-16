@@ -19,6 +19,7 @@ const UpdateWinningNumber = () => {
     const [istwo_pm, setIsTwoPm] = useState(false);
     const [isfive_pm, setIsFivePm] = useState(false);
     const [isnine_pm, setIsNinePm] = useState(false);
+
     const initialState = {
         date: state?.created_at,
         two_pm: state?.data?.['2 PM_winning_number'] ?? '',
@@ -176,6 +177,7 @@ const UpdateWinningNumber = () => {
                                                                 onBlur={handleBlur}
                                                                 value={values.nine_pm}
                                                                 onWheel={() => document.activeElement.blur()}
+                                                                readOnly={isnine_pm}
                                                             />
                                                             <ErrorMessage
                                                                 errors={errors}
