@@ -19,9 +19,11 @@ const EditUsers = () => {
     const initialState = {
         full_name: state?.data?.full_name ?? '',
         username: state?.data?.username ?? '',
-        email: state?.data?.email ?? '',
+        mobile_number: state?.data?.mobile_number ?? '',
         profile: state?.data?.profile_image
     };
+
+    console.log(state?.data);
 
     const updateUserDetails = async (values, { setSubmitting }) => {
         setSubmitting(false);
@@ -125,12 +127,12 @@ const EditUsers = () => {
                                                     </div>
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">Email Address <span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">Mobile Number</label>
                                                             <input
-                                                                type="email"
+                                                                type="number"
                                                                 className="ct_input form-control"
-                                                                placeholder="Email Address"
-                                                                value={values.email}
+                                                                placeholder="Mobile Number"
+                                                                value={values.mobile_number}
                                                                 readOnly
                                                             />
                                                         </div>

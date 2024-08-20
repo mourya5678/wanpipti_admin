@@ -28,7 +28,8 @@ export const ForgotPasswordSchema = Yup.object().shape({
 });
 
 export const UpdateUserSchema = Yup.object().shape({
-    full_name: Yup.string().required("Please enter a full name"),
+    full_name: Yup.string().matches(/^[a-zA-Z]+(?:\s+[a-zA-Z]+)+$/, 'Please enter your full name (first and last name).')
+        .required("Please enter a full name"),
     username: Yup.string().required("Please enter a user name")
 });
 
@@ -80,7 +81,7 @@ export const ChangePasswordSchema = Yup.object().shape({
 });
 
 export const UpdateAdminSchema = Yup.object().shape({
-    full_name: Yup.string().required("Please enter your full name"),
+    full_name: Yup.string().matches(/^[a-zA-Z]+(?:\s+[a-zA-Z]+)+$/, 'Please enter your full name (first and last name).').required("Please enter your full name"),
     username: Yup.string().required("Please enter your user name")
 });
 
