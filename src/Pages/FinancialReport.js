@@ -64,8 +64,8 @@ const FinancialReport = () => {
                                                     </div>
                                                 </td>
                                                 <td className={`${item?.transaction_type == "Withdraw" || item?.transaction_type == "withdraw" || item?.transaction_type == "BetPlace" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{item?.transaction_type ?? ''}</td>
-                                                <td className={`${item?.transaction_type == "Withdraw" || item?.transaction_type == "withdraw" || item?.transaction_type == "BetPlace" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{curSym}{item?.amount ?? 0}</td>
-                                                <td className="text-end">{curSym}{item?.closing_balance ?? 0}</td>
+                                                <td className={`${item?.transaction_type == "Withdraw" || item?.transaction_type == "withdraw" || item?.transaction_type == "BetPlace" || item?.transaction_type == "betPlace" ? "ct_red_text" : "ct_green_text"}`}>{curSym}{" "}{item?.amount ?? 0}</td>
+                                                <td className="text-end">{curSym}{" "}{item?.closing_balance ?? 0}</td>
                                             </tr>
                                         ))}
                                     </tbody>

@@ -74,7 +74,7 @@ const Dashboard = () => {
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
                                         <p className="ct_fw_600">Total Bet Amount</p>
-                                        <h2 className="ct_fs_28 ct_fw_600 text-white">{curSym}{dashboardData?.total_bet_amount ?? 0}</h2>
+                                        <h2 className="ct_fs_28 ct_fw_600 text-white">{curSym}{" "}{dashboardData?.total_bet_amount ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
                                         <i className="fa-solid fa-hand-holding-dollar"></i>
@@ -113,7 +113,7 @@ const Dashboard = () => {
                                                 </td>
                                                 <td>{item?.full_name ?? ''}</td>
                                                 <td>{item?.mobile_number ?? ''}</td>
-                                                <td>{curSym}{item?.wallet?.wallet_balance ?? ''}</td>
+                                                <td>{curSym}{" "}{item?.wallet?.wallet_balance ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => dispatch(userModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
@@ -172,7 +172,7 @@ const Dashboard = () => {
                                 <div className="ct_grid_3  justify-content-center ct_grid_3_responsive_3 mt-4">
                                     <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">{curSym}{userData?.wallet?.wallet_balance ?? 0}</p>
+                                    <p className="mb-0 text-white">{curSym}{" "}{userData?.wallet?.wallet_balance ?? 0}</p>
                                 </div>
                             </div>
                         </div>
