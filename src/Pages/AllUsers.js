@@ -9,6 +9,7 @@ import { pageRoutes } from '../Routes/pageRoutes';
 import Loader from '../Components/Loader';
 import ReactPagination from '../Layout/ReactPagination';
 import PaginationDropdown from '../Layout/PaginationDropdown';
+import { curSym } from '../Auth/Pip';
 
 const AllUsers = () => {
     const navigate = useNavigate();
@@ -78,7 +79,7 @@ const AllUsers = () => {
                                                 </td>
                                                 <td>{item?.full_name ?? ''}</td>
                                                 <td>{item?.mobile_number ?? ''}</td>
-                                                <td>${item?.wallet?.wallet_balance ?? ''}</td>
+                                                <td>{curSym}{item?.wallet?.wallet_balance ?? ''}</td>
                                                 <td>
                                                     <div className="ct_action_btns">
                                                         <a href="javascript:void(0)" onClick={() => dispatch(userModalData(item))} className="ct_view_btn" data-bs-toggle="modal" data-bs-target="#ct_user_view"><i className="fa-solid fa-eye"></i></a>
@@ -154,7 +155,7 @@ const AllUsers = () => {
                                 <div className="ct_grid_3 mt-4 justify-content-center">
                                     <p className="mb-0 text-white">Current Balance</p>
                                     <p className="mb-0 text-white">:</p>
-                                    <p className="mb-0 text-white">${userData?.wallet?.wallet_balance ?? 0}</p>
+                                    <p className="mb-0 text-white">{curSym}{userData?.wallet?.wallet_balance ?? 0}</p>
                                 </div>
                             </div>
                         </div>

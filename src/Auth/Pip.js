@@ -2,7 +2,7 @@ import { message, message as toast } from 'antd';
 import moment from "moment";
 
 // Currency Symbol
-export const curSym = "$";
+export const curSym = "₱";
 
 // Authorization
 export const pipSetAccessToken = (token) => {
