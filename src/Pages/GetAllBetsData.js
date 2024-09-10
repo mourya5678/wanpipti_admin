@@ -17,7 +17,7 @@ const GetAllBetsData = () => {
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, bet_data, betLimitData } = useSelector((state) => state?.usersReducer);
     const [currentPage, setCurrentPage] = useState(0);
-    const [usersPerPage, setUserPerPages] = useState(10);
+    const [usersPerPage, setUserPerPages] = useState(5);
 
     const displayUsers = bet_data?.slice(
         currentPage * usersPerPage,

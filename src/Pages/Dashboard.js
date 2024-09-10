@@ -43,11 +43,11 @@ const Dashboard = () => {
                     <h3 className="ct_fs_35 ct_fw_600 py-4 text-white">Dashboard</h3>
                     <div className="row">
                         {console.log(dashboardData, "dashboardData")}
-                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xxl-0">
+                        <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xxl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
-                                        <p className="ct_fw_600">All Users</p>
+                                        <p className="ct_fw_600">Total Users</p>
                                         <h2 className="ct_fs_28 ct_fw_600 text-white">{dashboardData?.all_user_count ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
@@ -56,7 +56,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
+                        <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>
@@ -69,7 +69,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-xxl-3 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
+                        <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-4 mb-4 mb-xl-0">
                             <div className="ct_dashboard_card">
                                 <div className="d-flex align-items-center justify-content-between gap-2">
                                     <div>

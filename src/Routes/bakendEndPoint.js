@@ -1,4 +1,4 @@
-// export const BASE_URL = 'http://192.168.29.104:4000/admin/'; // Local URL
+// export const BASE_URL = 'http://192.168.29.105:4003/admin/'; // Local URL
 
 export const BASE_URL = 'http://13.55.42.229:4000/admin/';  // Live URL
 
@@ -27,3 +27,5 @@ export const updateFaqEndPointURL = "update-faq/";
 
 export const gameDetailUpdateEndPointURL = "update-game-by-admin";
 export const getDahboardDataEndPointURL = "get-dashboard-data";
+export const getWithDrawlDataEndPointURL = "get-withdraw-request/all";
+export const updateWithDrawlStatusEndPointURL = "update-payment-status";

@@ -17,7 +17,7 @@ const BetsDetails = () => {
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, games_bet_details, user_bet_details } = useSelector((state) => state?.usersReducer);
     const [currentPage, setCurrentPage] = useState(0);
-    const [usersPerPage, setUserPerPages] = useState(10);
+    const [usersPerPage, setUserPerPages] = useState(5);
 
     const displayUsers = games_bet_details?.slice(
         currentPage * usersPerPage,
@@ -48,33 +48,29 @@ const BetsDetails = () => {
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4 flex-wrap">
                             <div className="d-flex align-items-center gap-3">
                                 <a href="javascript:void(0)" onClick={() => navigate(-1)} className="ct_back_text"><i className="fa-solid fa-arrow-left text-white"></i> Back</a>
-                                <h4 className="ct_fs_24 ps-4 ct_fw_600 text-white mb-0"> Bets Detail</h4>
+                                <h4 className="ct_fs_24 ps-4 ct_fw_600 text-white mb-0"> Bets Detail ({state?.created_at})</h4>
                             </div>
                         </div>
                         <div className="table-responsive mt-4">
                             <table className="table ct_custom_table">
                                 <thead>
                                     <tr>
-                                        <th>{state?.created_at}</th>
-                                        <th>2:00 Pm</th>
-                                        <th>5.00 Pm</th>
-                                        <th>9.00 Pm</th>
-                                        <th>Action</th>
+                                        <th>S.No.</th>
+                                        <th>User Name</th>
+                                        <th>Game Time</th>
+                                        <th>Selected Number</th>
+                                        <th className="text-start">Bet Amount</th>
                                     </tr>
                                 </thead>
                                 {displayUsers && displayUsers?.length != 0 ?
                                     <tbody>
-                                        {displayUsers?.map((item) => (
+                                        {displayUsers?.map((item, i) => (
                                             <tr>
+                                                <td>{i + 1}</td>
                                                 <td>{item?.user_name}</td>
-                                                <td>{item?.['2pm_choosen_number'] ? item?.["2pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["2pm_choosen_number"]}` : item?.["2pm_choosen_number"] : 'NA'}</td>
-                                                <td>{item?.['5pm_choosen_number'] ? item?.["5pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["5pm_choosen_number"]}` : item?.["5pm_choosen_number"] : 'NA'}</td>
-                                                <td>{item?.['9pm_choosen_number'] ? item?.["9pm_choosen_number"]?.toString()?.length == 1 ? `0${item?.["9pm_choosen_number"]}` : item?.["9pm_choosen_number"] : 'NA'}</td>
-                                                <td>
-                                                    <div className="ct_action_btns" onClick={() => dispatch(viewUserBetDetails(item))}>
-                                                        <a href="javascript:void(0)" className="ct_view_btn w-auto px-3 ct_fw_400 ct_ff_poppins d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="#ct_view_bet"><i className="fa-solid fa-eye"></i>View More</a>
-                                                    </div>
-                                                </td>
+                                                <td>{item?.game_time}</td>
+                                                <td>{item?.choosen_number ? item?.choosen_number?.toString()?.length == 1 ? `0${item?.choosen_number}` : item?.choosen_number : 'NA'}</td>
+                                                <td>{item?.bet_amount ?? 0}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -134,18 +130,18 @@ const BetsDetails = () => {
                                         <tbody>
                                             <tr>
                                                 <td className="p-2"> <p className="mb-0 pt-3 text-white">2:00</p></td>
-                                                <td className="p-2"><p className="mb-0 pt-3 text-white text-center">{user_bet_details?.['2pm_bet_amount'] ?? 'NA'}</p></td>
-                                                <td className="p-2"> <p className="mb-0 pt-3 text-white text-end">{user_bet_details?.['2pm_choosen_number'] ?? "NA"}</p></td>
+                                                <td className="p-2"><p className="mb-0 pt-3 text-white text-center">{user_bet_details?.['2PMbet_amount'] ?? 'NA'}</p></td>
+                                                <td className="p-2"> <p className="mb-0 pt-3 text-white text-end">{user_bet_details?.['2PMchoosen_number'] ?? "NA"}</p></td>
                                             </tr>
                                             <tr>
                                                 <td className="p-2"> <p className="mb-0  text-white">5:00</p></td>
-                                                <td className="p-2"><p className="mb-0 text-white text-center">{user_bet_details?.['5pm_choosen_number'] ?? 'NA'}</p></td>
-                                                <td className="p-2"> <p className="mb-0 text-white text-end">{user_bet_details?.['5pm_bet_amount'] ?? 'NA'}</p></td>
+                                                <td className="p-2"><p className="mb-0 text-white text-center">{user_bet_details?.['5PMchoosen_number'] ?? 'NA'}</p></td>
+                                                <td className="p-2"> <p className="mb-0 text-white text-end">{user_bet_details?.['5PMbet_amount'] ?? 'NA'}</p></td>
                                             </tr>
                                             <tr>
                                                 <td className="p-2"> <p className="mb-0 text-white">9:00</p></td>
-                                                <td className="p-2"><p className="mb-0 text-white text-center">{user_bet_details?.['9pm_choosen_number'] ?? 'NA'}</p></td>
-                                                <td className="p-2"> <p className="mb-0 text-white text-end">{user_bet_details?.['9pm_bet_amount'] ?? 'NA'}</p></td>
+                                                <td className="p-2"><p className="mb-0 text-white text-center">{user_bet_details?.['9PMchoosen_number'] ?? 'NA'}</p></td>
+                                                <td className="p-2"> <p className="mb-0 text-white text-end">{user_bet_details?.['9PMchoosen_number'] ?? 'NA'}</p></td>
                                             </tr>
                                         </tbody>
                                     </table>

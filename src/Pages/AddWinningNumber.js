@@ -103,7 +103,7 @@ const AddWinningNumber = () => {
                                                     </div>
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">2:00 Pm <span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">2:00 PM <span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="two_pm"
                                                                 type="number"
@@ -122,7 +122,7 @@ const AddWinningNumber = () => {
                                                     </div>
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">5:00 Pm<span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">5:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="five_pm"
                                                                 type="number"
@@ -141,7 +141,7 @@ const AddWinningNumber = () => {
                                                     </div>
                                                     <div className="col-md-12 mb-4">
                                                         <div className="form-group">
-                                                            <label className="mb-2 text-white">9:00 Pm<span className="ct_required_text">*</span></label>
+                                                            <label className="mb-2 text-white">9:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="nine_pm"
                                                                 type="number"

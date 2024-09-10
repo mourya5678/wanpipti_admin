@@ -17,7 +17,7 @@ const AllUsers = () => {
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, all_users, userData } = useSelector((state) => state?.usersReducer);
     const [currentPage, setCurrentPage] = useState(0);
-    const [usersPerPage, setUserPerPages] = useState(10);
+    const [usersPerPage, setUserPerPages] = useState(5);
 
     const displayUsers = all_users?.slice(
         currentPage * usersPerPage,

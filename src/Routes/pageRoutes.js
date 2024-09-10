@@ -15,6 +15,7 @@ import GetAllBetsData from "../Pages/GetAllBetsData";
 import SetBet from "../Pages/SetBet";
 import UpdateBetLimit from "../Pages/UpdateBetLimit";
 import UpdateWinningNumber from "../Pages/UpdateWinningNumber";
+import WithdrawStatus from "../Pages/WithdrawStatus";
 
 export const pageRoutes = {
     dashboard: '/',
@@ -36,7 +37,8 @@ export const pageRoutes = {
     change_password: "/change-password",
     add_faq: "/add-faq",
     all_faq: "/faq",
-    edit_faq: '/edit-faq'
+    edit_faq: '/edit-faq',
+    withdraw: '/withdraw'
 };
 
 export const AllRoutes = [
@@ -140,6 +142,12 @@ export const AllRoutes = [
         name: 'EditFaq',
         path: pageRoutes.edit_faq,
         element: <EditFaq />,
+        isPrivate: true
+    },
+    {
+        name: 'WithDraw',
+        path: pageRoutes.withdraw,
+        element: <WithdrawStatus />,
         isPrivate: true
     }
 ];

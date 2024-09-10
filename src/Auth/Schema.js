@@ -36,15 +36,15 @@ export const UpdateUserSchema = Yup.object().shape({
 export const AddWinningAmountSchema = Yup.object().shape({
     created_at: Yup.date().required("Please select Date"),
     two_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
     five_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
     nine_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
 });
@@ -52,11 +52,11 @@ export const AddWinningAmountSchema = Yup.object().shape({
 export const SetBetLimitSchema = Yup.object().shape({
     set_date: Yup.date().required("Please select Date"),
     bet_number: Yup.number()
-        .min(0, "The bet number must be at least 0")
+        .min(1, "The bet number must be at least 1")
         .max(99, "The bet number must be at most 99")
         .required("Please enter Bet Number"),
     max_bet_limit: Yup.number()
-        .min(0, "The bet max bet limit must be at least 0")
+        .min(1, "The bet max bet limit must be at least 1")
         .required("Please enter Max Bet Limit")
 });
 
@@ -93,15 +93,15 @@ export const AddFaqSchema = Yup.object().shape({
 export const UpdateWinningAmountSchema = Yup.object().shape({
     date: Yup.string().required("Please select Date"),
     two_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
     five_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
     nine_pm: Yup.number()
-        .min(0, "The number must be at least 0")
+        .min(1, "The number must be at least 1")
         .max(99, "The number must be at most 99")
         .optional(),
 });

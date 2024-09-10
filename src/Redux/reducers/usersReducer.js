@@ -17,7 +17,9 @@ import {
     getBetLimitData,
     UpdateGameDetail,
     getDashboardData,
-    AllTrasactionWallet
+    AllTrasactionWallet,
+    getWithdrawData,
+    UpdateWithdrawlStatus
 } from "../actions/usersAction";
 
 const initialState = {
@@ -32,7 +34,8 @@ const initialState = {
     user_bet_details: {},
     bet_data: [],
     dashboardData: {},
-    all_transaction: []
+    all_transaction: [],
+    all_withdrawl_request: []
 };
 
 export const userSlice = createSlice({
@@ -254,6 +257,31 @@ export const userSlice = createSlice({
         builder.addCase(AllTrasactionWallet.rejected, (state, action) => {
             state.isLoading = false;
         });
+
+        // getWithdrawData
+        builder.addCase(getWithdrawData.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(getWithdrawData.fulfilled, (state, action) => {
+            const { data } = action?.payload || [];
+            state.all_withdrawl_request = data ?? []
+            state.isLoading = false;
+        });
+        builder.addCase(getWithdrawData.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
+        // UpdateWithdrawlStatus
+        builder.addCase(UpdateWithdrawlStatus.pending, (state, action) => {
+            state.isLoading = true;
+        });
+        builder.addCase(UpdateWithdrawlStatus.fulfilled, (state, action) => {
+            state.isLoading = false;
+        });
+        builder.addCase(UpdateWithdrawlStatus.rejected, (state, action) => {
+            state.isLoading = false;
+        });
+
     },
 });
 

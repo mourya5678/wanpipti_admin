@@ -20,7 +20,9 @@ import {
     deleteFaqEndPointURl,
     updateFaqEndPointURL,
     gameDetailUpdateEndPointURL,
-    getDahboardDataEndPointURL
+    getDahboardDataEndPointURL,
+    getWithDrawlDataEndPointURL,
+    updateWithDrawlStatusEndPointURL
 } from "../../Routes/bakendEndPoint";
 
 export const getUsersData = createAsyncThunk("user-data", async () => {
@@ -312,5 +314,33 @@ export const getDashboardData = createAsyncThunk("get-dahboard", async () => {
         return response;
     } catch (error) {
         return error ?? null
+    }
+});
+
+export const getWithdrawData = createAsyncThunk("withdraw-details", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getWithDrawlDataEndPointURL,
+            method: "GET",
+            isErrorToast: false
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+export const UpdateWithdrawlStatus = createAsyncThunk("withdraw-status", async (props) => {
+    const { payload, callback } = props;
+    try {
+        const response = await API_REQUEST({
+            url: updateWithDrawlStatusEndPointURL,
+            method: "POST",
+            data: payload,
+        });
+        callback(response);
+        return response;
+    } catch (error) {
+        callback(null, error);
     }
 });

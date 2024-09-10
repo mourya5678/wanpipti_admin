@@ -17,7 +17,7 @@ const GamesManagement = () => {
     const { isToggle } = useSelector((state) => state.authReducer);
     const { isLoading, all_games } = useSelector((state) => state?.usersReducer);
     const [currentPage, setCurrentPage] = useState(0);
-    const [usersPerPage, setUserPerPages] = useState(10);
+    const [usersPerPage, setUserPerPages] = useState(5);
 
     const displayUsers = all_games?.slice(
         currentPage * usersPerPage,
@@ -75,9 +75,9 @@ const GamesManagement = () => {
                                     <tr>
                                         <th>S. No.</th>
                                         <th>Date</th>
-                                        <th>2:00 Pm</th>
-                                        <th>5.00 Pm</th>
-                                        <th>9.00 Pm</th>
+                                        <th>2:00 PM</th>
+                                        <th>5.00 PM</th>
+                                        <th>9.00 PM</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
