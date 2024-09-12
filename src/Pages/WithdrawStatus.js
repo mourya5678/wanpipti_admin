@@ -78,7 +78,6 @@ const WithdrawStatus = () => {
                                                 <td>{i + 1}</td>
                                                 <td>
                                                     <div className="d-flex align-items-center gap-2">
-                                                        <img src={item?.user?.profile_image ?? "assets/img/user124.jpg"} alt="" className="ct_img_36" />
                                                         <h5 className="ct_fs_14 ct_fw_600 mb-0 text-white">{item?.user?.username ?? ''}</h5>
                                                     </div>
                                                 </td>
