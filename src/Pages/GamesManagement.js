@@ -33,25 +33,26 @@ const GamesManagement = () => {
     };
 
     const updateNavigation = (date, item) => {
-        let today = new Date();
-        let bDate = new Date(date);
-        let todayDate = today.getDate();
-        let bDateDate = bDate.getDate();
-        let todayMonth = today.getMonth();
-        let bDateMonth = bDate.getMonth();
-        if (todayMonth < bDateMonth) {
-            navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
-        } else if (todayMonth > bDateMonth) {
-            message.error("Result has already been declared for the user, it cannot be updated now!");
-        } else {
-            if (todayDate < bDateDate) {
-                navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
-            } else if (todayDate > bDateDate) {
-                message.error("Result has already been declared for the user, it cannot be updated now!");
-            } else {
-                navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: true } })
-            }
-        }
+        navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } });
+        // let today = new Date();
+        // let bDate = new Date(date);
+        // let todayDate = today.getDate();
+        // let bDateDate = bDate.getDate();
+        // let todayMonth = today.getMonth();
+        // let bDateMonth = bDate.getMonth();
+        // if (todayMonth < bDateMonth) {
+        //     navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
+        // } else if (todayMonth > bDateMonth) {
+        //     message.error("Result has already been declared for the user, it cannot be updated now!");
+        // } else {
+        //     if (todayDate < bDateDate) {
+        //         navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: false } })
+        //     } else if (todayDate > bDateDate) {
+        //         message.error("Result has already been declared for the user, it cannot be updated now!");
+        //     } else {
+        //         navigate(pageRoutes.update_winning_number, { state: { created_at: pipViewDate2(date), data: item, isToday: true } })
+        //     }
+        // }
     };
 
     if (isLoading) {

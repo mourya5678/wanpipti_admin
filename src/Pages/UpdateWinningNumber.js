@@ -8,7 +8,6 @@ import { Formik } from "formik";
 import { UpdateWinningAmountSchema } from '../Auth/Schema';
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateGameDetail } from '../Redux/actions/usersAction';
-import { pipViewDate2 } from '../Auth/Pip';
 import { message } from 'antd';
 
 const UpdateWinningNumber = () => {
@@ -16,9 +15,9 @@ const UpdateWinningNumber = () => {
     const dispatch = useDispatch();
     const { isToggle } = useSelector((state) => state.authReducer);
     const { state } = useLocation();
-    const [istwo_pm, setIsTwoPm] = useState(false);
-    const [isfive_pm, setIsFivePm] = useState(false);
-    const [isnine_pm, setIsNinePm] = useState(false);
+    const [istwo_pm, setIsTwoPm] = useState(state?.data?.['2 PM_winning_number'] ? true : false);
+    const [isfive_pm, setIsFivePm] = useState(state?.data?.['5 PM_winning_number'] ? true : false);
+    const [isnine_pm, setIsNinePm] = useState(state?.data?.['9 PM_winning_number'] ? true : false);
 
     const initialState = {
         date: state?.created_at,
@@ -28,33 +27,33 @@ const UpdateWinningNumber = () => {
     };
 
     useEffect(() => {
-        if (state?.isToday == false) {
-            setIsTwoPm(false);
-            setIsFivePm(false);
-            setIsNinePm(false);
-        } else {
-            const intervalId = setInterval(() => {
-                const now1 = new Date();
-                const hours1 = now1.getHours();
-                const minutes1 = now1.getMinutes();
-                if (hours1 > 13 || (hours1 === 13 && minutes1 >= 50)) {
-                    setIsTwoPm(true);
-                    setIsFivePm(false);
-                    setIsNinePm(false);
-                }
-                if (hours1 > 16 || (hours1 === 16 && minutes1 >= 50)) {
-                    setIsTwoPm(true);
-                    setIsFivePm(true);
-                    setIsNinePm(false);
-                }
-                if (hours1 > 20 || (hours1 === 20 && minutes1 >= 50)) {
-                    setIsTwoPm(true);
-                    setIsFivePm(true);
-                    setIsNinePm(true);
-                }
-            }, 1000);
-            return () => clearInterval(intervalId);
-        }
+        // if (state?.isToday == false) {
+        //     setIsTwoPm(false);
+        //     setIsFivePm(false);
+        //     setIsNinePm(false);
+        // } else {
+        //     const intervalId = setInterval(() => {
+        //         const now1 = new Date();
+        //         const hours1 = now1.getHours();
+        //         const minutes1 = now1.getMinutes();
+        //         if (hours1 > 13 || (hours1 === 13 && minutes1 >= 50)) {
+        //             setIsTwoPm(true);
+        //             setIsFivePm(false);
+        //             setIsNinePm(false);
+        //         }
+        //         if (hours1 > 16 || (hours1 === 16 && minutes1 >= 50)) {
+        //             setIsTwoPm(true);
+        //             setIsFivePm(true);
+        //             setIsNinePm(false);
+        //         }
+        //         if (hours1 > 20 || (hours1 === 20 && minutes1 >= 50)) {
+        //             setIsTwoPm(true);
+        //             setIsFivePm(true);
+        //             setIsNinePm(true);
+        //         }
+        //     }, 1000);
+        //     return () => clearInterval(intervalId);
+        // }
     }, []);
 
     const onHandleUpdateWinningNumbers = async (values, { setSubmitting }) => {
