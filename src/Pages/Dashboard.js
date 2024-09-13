@@ -64,7 +64,8 @@ const Dashboard = () => {
                                         <h2 className="ct_fs_28 ct_fw_600 text-white">{dashboardData?.all_game_count ?? 0}</h2>
                                     </div>
                                     <div className="ct_dash_card_icon" style={{ backgroundColor: "rgb(255 226 121 / 52%)" }}>
-                                        <i className="fa-solid fa-sack-dollar"></i>
+                                        {/* <i className="fa-solid fa-sack-dollar"></i> */}
+                                        <i className="fa-solid fa-gamepad"></i>
                                     </div>
                                 </div>
                             </div>
