@@ -9,7 +9,7 @@ const PageNotFound = () => {
             <div className="ct_page_not_found_section">
                 <h1 className="ct_page_not_found_error">404</h1>
                 <div className="ct_page_not_found_page">Ooops!!! The page you are looking for is not found</div>
-                <a className="back-home" href="javascript:void(0)" onClick={() => navigate(pageRoutes.dashboard)}>Back to home</a>
+                <a className="back-home" href="javascript:void(0)" onClick={() => navigate(pageRoutes.dashboard + '/')}>Back to home</a>
             </div>
         </div>
     )

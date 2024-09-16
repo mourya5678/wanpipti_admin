@@ -18,7 +18,7 @@ const Sidebar = ({ path }) => {
                 <img src="assets/img/Wanpipti.svg" alt="" />
             </div>
             <ul className="ct_side_menu">
-                <li onClick={() => navigate(pageRoutes.dashboard)}>
+                <li onClick={() => navigate(pageRoutes.dashboard + '/')}>
                     <a href="javascript:void(0)" className={path == "dashboard" && "active"}>Dashboard</a>
                 </li>
                 <li onClick={() => navigate(pageRoutes.all_users)}>
