@@ -29,3 +29,5 @@ export const gameDetailUpdateEndPointURL = "update-game-by-admin";
 export const getDahboardDataEndPointURL = "get-dashboard-data";
 export const getWithDrawlDataEndPointURL = "get-withdraw-request/all";
 export const updateWithDrawlStatusEndPointURL = "update-payment-status";
+
+export const getAllGameResultsEndPointURL = "game-result";

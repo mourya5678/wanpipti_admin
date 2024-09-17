@@ -6,6 +6,7 @@ import {
     updateUserDetailsEndPointURL,
     createGameEndPointURL,
     getAllGamesEndPointURL,
+    getAllGameResultsEndPointURL,
     myProfileEndPointURL,
     updateMyProfileEndPointURL,
     changePasswordEndPointURL,
@@ -222,7 +223,8 @@ export const getGamesById = createAsyncThunk("get-game-by-id", async (props) => 
             url: getBetsDatByDatEndpointURL,
             method: "POST",
             data: payload,
-            isErrorToast: false
+            isErrorToast: false,
+            isSuccessToast: false
         });
         return response;
     } catch (error) {
@@ -342,5 +344,19 @@ export const UpdateWithdrawlStatus = createAsyncThunk("withdraw-status", async (
         return response;
     } catch (error) {
         callback(null, error);
+    }
+});
+
+export const getAllGameResults = createAsyncThunk("game-result", async () => {
+    try {
+        const response = await API_REQUEST({
+            url: getAllGameResultsEndPointURL,
+            method: "POST",
+            isErrorToast: false,
+            isSuccessToast: false,
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
     }
 });

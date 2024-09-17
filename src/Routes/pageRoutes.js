@@ -15,6 +15,7 @@ import GetAllBetsData from "../Pages/GetAllBetsData";
 import SetBet from "../Pages/SetBet";
 import UpdateBetLimit from "../Pages/UpdateBetLimit";
 import UpdateWinningNumber from "../Pages/UpdateWinningNumber";
+import WinnersList from "../Pages/WinnersList";
 import WithdrawStatus from "../Pages/WithdrawStatus";
 
 export const pageRoutes = {
@@ -38,7 +39,8 @@ export const pageRoutes = {
     add_faq: "/add-faq",
     all_faq: "/faq",
     edit_faq: '/edit-faq',
-    withdraw: '/withdraw'
+    withdraw: '/withdraw',
+    winner_list: '/game-result'
 };
 
 export const AllRoutes = [
@@ -46,6 +48,12 @@ export const AllRoutes = [
         name: 'Dashboard',
         path: pageRoutes.dashboard,
         element: <Dashboard />,
+        isPrivate: true
+    },
+    {
+        name: 'WinnersList',
+        path: pageRoutes.winner_list,
+        element: <WinnersList />,
         isPrivate: true
     },
     {

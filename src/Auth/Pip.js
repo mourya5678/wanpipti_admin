@@ -27,6 +27,9 @@ export const pipViewDate3 = (date) => {
 export const pipViewDate2 = (date) => {
     return moment(date).format("MM-DD-YYYY");
 };
+export const pipViewDate4 = (date) => {
+    return moment(date).format("YYYY-MM-DD");
+};
 
 export const pipDeleteToken = () => {
     localStorage.clear();

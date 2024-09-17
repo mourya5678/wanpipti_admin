@@ -88,7 +88,7 @@ const GetAllBetsData = () => {
                         </div>
                         <div className="mt-3">
                             {
-                                bet_data?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                bet_data?.length != 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
                                     <PaginationDropdown
                                         onChange={(val) => {
                                             setUserPerPages(val);

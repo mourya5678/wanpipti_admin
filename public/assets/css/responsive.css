@@ -158,4 +158,8 @@
   .ct_padd_inline_212 {
     padding-inline: 30px;
   }
+  .ct_yellow_btn {
+    padding-inline: 15px;
+    font-size: 14px;
+  }
 }

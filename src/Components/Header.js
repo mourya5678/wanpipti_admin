@@ -73,7 +73,7 @@ const Header = () => {
                         </p>
                             <div className="modal-footer border-0 justify-content-center">
                                 <button type="button" className=" ct_yellow_btn ct_outline_blue w-auto ct_line_height_0" data-bs-dismiss="modal">Cancel</button>
-                                <a href="javascript:void(0)" onClick={onHandleLogoutAdmin} data-bs-dismiss="modal" type="button" className=" bg-danger  ct_yellow_btn text-white w-auto justify-content-center" style={{ borderColor: "rgb(220, 53, 69)" }}>Yes Logout!</a >
+                                <a href="javascript:void(0)" onClick={onHandleLogoutAdmin} data-bs-dismiss="modal" type="button" className=" bg-danger  ct_yellow_btn text-white w-auto justify-content-center" style={{ borderColor: "rgb(220, 53, 69)" }}>Logout!</a >
                             </div>
                             <div>
                             </div>

@@ -36,6 +36,9 @@ const Sidebar = ({ path }) => {
                 <li onClick={() => navigate(pageRoutes.withdraw)}>
                     <a href="javascript:void(0)" className={path == "withdraw" && "active"}>Withdraw</a>
                 </li>
+                <li onClick={() => navigate(pageRoutes.winner_list)}>
+                    <a href="javascript:void(0)" className={path == "winners" && "active"}>Game Result</a>
+                </li>
                 <li onClick={() => navigate(pageRoutes.all_faq)}>
                     <a href="javascript:void(0)" className={path == "faq" && "active"}>FAQ</a>
                 </li>

@@ -111,7 +111,7 @@ const WithdrawStatus = () => {
                         </div>
                         <div className="mt-3">
                             {
-                                all_withdrawl_request?.length > 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
+                                all_withdrawl_request?.length != 0 && <div className="d-flex align-items-center flex-wrap justify-content-between gap-3 mb-3">
                                     <PaginationDropdown
                                         onChange={(val) => {
                                             setUserPerPages(val);

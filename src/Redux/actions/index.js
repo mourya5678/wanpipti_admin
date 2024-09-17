@@ -7,7 +7,7 @@ import {
 import { pipDeleteTokenAuth, pipGetAccessToken } from "../../Auth/Pip";
 
 export const API_REQUEST = async (props) => {
-    const { BASE = BASE_URL, url, method, data, headers, params, isErrorToast = true } = props;
+    const { BASE = BASE_URL, url, method, data, headers, params, isErrorToast = true, isSuccessToast = true } = props;
     const token = pipGetAccessToken();
 
     const requestOptions = {
@@ -24,9 +24,9 @@ export const API_REQUEST = async (props) => {
     try {
         const response = await axios(requestOptions);
         if (method !== "GET" && response?.data?.success == true) {
-            toast.success(response?.data?.message);
+            isSuccessToast == true && toast.success(response?.data?.message);
         } else if (response?.data?.success == false && method !== "GET") {
-            toast.error(response?.data?.message);
+            isSuccessToast == true && toast.error(response?.data?.message);
         }
         return response?.data;
     } catch (error) {
