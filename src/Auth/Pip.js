@@ -7,8 +7,7 @@ export const curSym = "₱";
 // Authorization
 export const pipSetAccessToken = (token) => {
     if (!token) return;
-    else
-        localStorage.setItem("access-token", token);
+    else localStorage.setItem("access-token", token);
 };
 
 export const pipGetAccessToken = () => {

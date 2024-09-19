@@ -1,6 +1,6 @@
-// export const BASE_URL = 'http://192.168.29.105:4003/admin/'; // Local URL
+export const BASE_URL = 'http://192.168.29.68:4003/admin/'; // Local URL
 
-export const BASE_URL = 'https://www.panaloto.com:4000/admin/';  // Live URL
+// export const BASE_URL = 'https://www.panaloto.com:4000/admin/';  // Live URL
 
 export const loginEndPointURL = "login";
 export const forgotPasswordEndPointURL = "forgot-password";
