@@ -46,6 +46,10 @@ const AddWinningNumber = () => {
         }
     };
 
+    // const onHandleChange = () => {
+
+    // }
+
     if (isLoading) {
         return <Loader />
     }
@@ -106,11 +110,13 @@ const AddWinningNumber = () => {
                                                             <label className="mb-2 text-white">2:00 PM <span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="two_pm"
-                                                                type="number"
+                                                                type="text"
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
                                                                 value={values.two_pm}
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 onWheel={() => document.activeElement.blur()}
                                                             />
                                                             <ErrorMessage
@@ -125,7 +131,9 @@ const AddWinningNumber = () => {
                                                             <label className="mb-2 text-white">5:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="five_pm"
-                                                                type="number"
+                                                                type="text"
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
@@ -144,7 +152,9 @@ const AddWinningNumber = () => {
                                                             <label className="mb-2 text-white">9:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="nine_pm"
-                                                                type="number"
+                                                                type="text"
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}

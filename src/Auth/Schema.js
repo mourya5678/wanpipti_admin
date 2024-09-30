@@ -35,17 +35,20 @@ export const UpdateUserSchema = Yup.object().shape({
 
 export const AddWinningAmountSchema = Yup.object().shape({
     created_at: Yup.date().required("Please select Date"),
-    two_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    two_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
-    five_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    five_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
-    nine_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    nine_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
 });
 
@@ -92,16 +95,19 @@ export const AddFaqSchema = Yup.object().shape({
 
 export const UpdateWinningAmountSchema = Yup.object().shape({
     date: Yup.string().required("Please select Date"),
-    two_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    two_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
-    five_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    five_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
-    nine_pm: Yup.number()
-        .min(1, "The number must be at least 1")
-        .max(99, "The number must be at most 99")
+    nine_pm: Yup.string()
+        .min(2, "The number length must be at least 2")
+        .max(2, "The number length must be at least 2")
+        .matches(/^[0-9]{2,}$/, "The number should not be less than zero")
         .optional(),
 });

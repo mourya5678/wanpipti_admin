@@ -131,11 +131,13 @@ const UpdateWinningNumber = () => {
                                                             <label className="mb-2 text-white">2:00 PM <span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="two_pm"
-                                                                type="number"
+                                                                type="text"
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
-                                                                value={values.two_pm?.toString()?.length == 1 ? `0${values.two_pm}` : values.two_pm}
+                                                                value={values.two_pm}
                                                                 onWheel={() => document.activeElement.blur()}
                                                                 readOnly={istwo_pm}
                                                             />
@@ -151,11 +153,13 @@ const UpdateWinningNumber = () => {
                                                             <label className="mb-2 text-white">5:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="five_pm"
-                                                                type="number"
+                                                                type="text"
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
-                                                                value={values.five_pm?.toString()?.length == 1 ? `0${values.five_pm}` : values.five_pm}
+                                                                value={values.five_pm}
                                                                 onWheel={() => document.activeElement.blur()}
                                                                 readOnly={isfive_pm}
                                                             />
@@ -171,11 +175,13 @@ const UpdateWinningNumber = () => {
                                                             <label className="mb-2 text-white">9:00 PM<span className="ct_required_text">*</span></label>
                                                             <input
                                                                 id="nine_pm"
-                                                                type="number"
+                                                                type="text"
+                                                                minLength={2}
+                                                                maxLength={2}
                                                                 className="ct_input form-control"
                                                                 onChange={handleChange}
                                                                 onBlur={handleBlur}
-                                                                value={values.nine_pm?.toString()?.length == 1 ? `0${values.nine_pm}` : values.nine_pm}
+                                                                value={values.nine_pm}
                                                                 onWheel={() => document.activeElement.blur()}
                                                                 readOnly={isnine_pm}
                                                             />
