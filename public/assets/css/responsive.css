@@ -162,4 +162,11 @@
     padding-inline: 15px;
     font-size: 14px;
   }
+  .ct_logo img {
+    width: 100%;
+    max-width: 240px !important;
+  }
+  .ct_side_bar {
+    width: 100%;
+  }
 }
