@@ -15,7 +15,7 @@ const Sidebar = ({ path }) => {
                 <i className="fa-solid fa-xmark"></i>
             </div>
             <div className="ct_logo">
-                <img src="assets/img/Panaloto_logo.svg" alt="" />
+                <img src="assets/img/Panaloto_logo.png" alt="" />
             </div>
             <ul className="ct_side_menu">
                 <li onClick={() => navigate(pageRoutes.dashboard + '/')}>

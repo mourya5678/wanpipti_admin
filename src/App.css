@@ -86,3 +86,7 @@
 .ct_white_space_nowrap {
   white-space: nowrap;
 }
+.ct_logo img {
+  width: 100%;
+  max-width: 170px;
+}

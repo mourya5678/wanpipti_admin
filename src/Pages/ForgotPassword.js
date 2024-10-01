@@ -33,7 +33,7 @@ const ForgotPassword = () => {
                 <div className="ct_login_left">
                     <div className="ct_padd_inline_212">
                         <div className="ct_admin_logo mx-auto text-center mb-4">
-                            <img src="assets/img/Panaloto_logo.svg" alt="" style={{ width: "150px" }} />
+                            <img src="assets/img/Panaloto_logo.png" alt="" style={{ width: "150px" }} />
                         </div>
                         <div>
                             <h3 className="ct_fs_35 ct_fw_700 ct_ff_poppin  text-center mb-3">FORGOT PASSWORD</h3>
