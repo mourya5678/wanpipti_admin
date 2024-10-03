@@ -1067,7 +1067,7 @@ input[type="number"] {
   font-size: 24px;
 }
 
-.ct_admin_logo img{
+.ct_admin_logo img {
   width: 100% !important;
-  max-width: 300px !important;
+  max-width: 360px !important;
 }
