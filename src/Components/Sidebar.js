@@ -18,32 +18,56 @@ const Sidebar = ({ path }) => {
                 <img src="assets/img/Panaloto_logo1.png" alt="" />
             </div>
             <ul className="ct_side_menu">
-                <li onClick={() => navigate(pageRoutes.dashboard + '/')}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.dashboard + '/')
+                }}>
                     <a href="javascript:void(0)" className={path == "dashboard" && "active"}>Dashboard</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.all_users)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.all_users)
+                }}>
                     <a href="javascript:void(0)" className={path == "all-user" && "active"}>All Users</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.game_manage)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.game_manage)
+                }}>
                     <a href="javascript:void(0)" className={path == "games" && "active"}>Game Management</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.financial_report)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.financial_report)
+                }}>
                     <a href="javascript:void(0)" className={path == "financial" && "active"}>Financial Report</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.all_bets)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.all_bets)
+                }}>
                     <a href="javascript:void(0)" className={path == "set-bet" && "active"}>Bet Settings</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.withdraw)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.withdraw)
+                }}>
                     <a href="javascript:void(0)" className={path == "withdraw" && "active"}>Withdraw</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.winner_list)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.winner_list)
+                }}>
                     <a href="javascript:void(0)" className={path == "winners" && "active"}>Game Result</a>
                 </li>
-                <li onClick={() => navigate(pageRoutes.all_faq)}>
+                <li onClick={() => {
+                    // dispatch(toggleChange(!isToggle))
+                    navigate(pageRoutes.all_faq)
+                }}>
                     <a href="javascript:void(0)" className={path == "faq" && "active"}>FAQ</a>
                 </li>
             </ul>
-        </div>
+        </div >
     )
 }
 
