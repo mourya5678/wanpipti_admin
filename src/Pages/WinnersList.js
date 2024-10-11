@@ -168,7 +168,7 @@ const WinnersList = () => {
                                                     <td>{item?.game?.game_time ?? 'NA'}</td>
                                                     <td>{item?.user?.username ?? 'NA'}</td>
                                                     <td>{item?.user?.mobile_number ?? 'NA'}</td>
-                                                    <td>{item?.winning_amount ?? 'NA'}</td>
+                                                    <td>₱ {item?.winning_amount ?? 'NA'}</td>
                                                     <td className="text-end">{item?.is_winning == true ? "Win" : "Lost"}</td>
                                                 </tr>
                                                 : changeStatus == "Win" ? item?.is_winning == true &&
@@ -178,7 +178,7 @@ const WinnersList = () => {
                                                         <td>{item?.game?.game_time ?? 'NA'}</td>
                                                         <td>{item?.user?.username ?? 'NA'}</td>
                                                         <td>{item?.user?.mobile_number ?? 'NA'}</td>
-                                                        <td>{item?.winning_amount ?? 'NA'}</td>
+                                                        <td>₱ {item?.winning_amount ?? 'NA'}</td>
                                                         <td className="text-end">{item?.is_winning == true ? "Win" : "Lost"}</td>
                                                     </tr>
                                                     : changeStatus == "Lost" && item?.is_winning == false &&
@@ -188,7 +188,7 @@ const WinnersList = () => {
                                                         <td>{item?.game?.game_time ?? 'NA'}</td>
                                                         <td>{item?.user?.username ?? 'NA'}</td>
                                                         <td>{item?.user?.mobile_number ?? 'NA'}</td>
-                                                        <td>{item?.winning_amount ?? 'NA'}</td>
+                                                        <td>₱ {item?.winning_amount ?? 'NA'}</td>
                                                         <td className="text-end">{item?.is_winning == true ? "Win" : "Lost"}</td>
                                                     </tr>
                                         ))

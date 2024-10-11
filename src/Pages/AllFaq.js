@@ -50,7 +50,7 @@ const AllFaq = () => {
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
-                            <h4 className="ct_fs_24  ct_fw_600 text-white">All FAQ</h4>
+                            <h4 className="ct_fs_24  ct_fw_600 text-white">FAQ</h4>
                             <a href="javascript:void(0)" onClick={() => navigate(pageRoutes.add_faq)} className="ct_yellow_btn w-auto"><i className="fa-solid fa-plus"></i> Add</a>
                         </div>
                         <div className="table-responsive mt-4">

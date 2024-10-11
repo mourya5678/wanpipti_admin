@@ -56,7 +56,7 @@ const WithdrawStatus = () => {
                 <div className="ct_inner_dashbaord_main">
                     <div className="ct_white_bg">
                         <div className="d-flex align-items-center justify-content-between gap-2 mb-4">
-                            <h4 className="ct_fs_24  ct_fw_600 text-white">Withdraw Requests</h4>
+                            <h4 className="ct_fs_24  ct_fw_600 text-white">Withdrawal Requests</h4>
                         </div>
                         <div className="table-responsive mt-4">
                             <table className="table ct_custom_table">

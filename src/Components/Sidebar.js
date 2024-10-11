@@ -52,7 +52,7 @@ const Sidebar = ({ path }) => {
                     // dispatch(toggleChange(!isToggle))
                     navigate(pageRoutes.withdraw)
                 }}>
-                    <a href="javascript:void(0)" className={path == "withdraw" && "active"}>Withdraw</a>
+                    <a href="javascript:void(0)" className={path == "withdraw" && "active"}>Withdrawal Requests</a>
                 </li>
                 <li onClick={() => {
                     // dispatch(toggleChange(!isToggle))
